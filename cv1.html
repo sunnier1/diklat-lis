@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style/listyle.css">
+</head>
+<body>
+<div class="cv-title">
+  <h1>CURRICULUM VITAE</h1>
+</div>
+<div class="cv-style">
+  <!--Bagian Filter CV-->
+  <div class="cv-filter">
+    <div class="user-filter">
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+      <div class="dropdown">
+        <button class="toggleDropdown">Informasi Pribadi</button><hr>
+        <div class="dropdown-content">
+          <label><input type="checkbox"> Email</label><hr>
+          <label><input type="checkbox"> Usia</label><hr>
+          <label><input type="checkbox"> Jenis Kelamin</label><hr>
+          <label><input type="checkbox"> Kota Provinsi</label><hr>
+          <label><input type="checkbox"> Kabupaten</label><hr>
+          <label><input type="checkbox"> Status Pekerjaan</label><hr>
+          <label><input type="checkbox"> Tentang Saya</label><hr>
+          <label><input type="checkbox"> Portfolio</label><hr>
+        </div>
+      </div>
+    </div>
+    <div class="user-filter">
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+      <div class="dropdown">
+        <button class="toggleDropdown">Pendidikan</button><hr>
+        <div class="dropdown-content">
+          <label><input type="checkbox"> President University</label><hr>
+        </div>
+      </div>
+    </div>
+    <div class="user-filter">
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+      <div class="dropdown">
+        <button class="toggleDropdown">Pengalaman Kerja</button><hr>
+        <div class="dropdown-content">
+          <label><input type="checkbox"> PT. Sinar Jaya</label><hr>
+          <label><input type="checkbox"> PT. Surya Dua</label><hr>
+        </div>
+      </div>
+    </div>
+    <div class="user-filter">
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+      <div class="dropdown">
+        <button class="toggleDropdown">Sertifikat</button><hr>
+        <div class="dropdown-content">
+          <label><input type="checkbox">Sertifikat 1</label><hr>
+        </div>
+      </div>
+    </div>
+    <div class="user-filter">
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+      <div class="dropdown">
+        <button class="toggleDropdown">Sertifikat Kompetensi Kerja</button><hr>
+        <div class="dropdown-content">
+          <label><input type="checkbox"> SKK 1</label><hr>
+          <label><input type="checkbox"> SKK 2</label><hr>
+        </div>
+      </div>
+    </div>
+    <div class="user-filter">
+      <button class="filter-cv-1" onclick="window.location.href='cv2.html';">
+        Preview
+        <ion-icon name="eye-outline"></ion-icon>
+      </button>
+      <button class="filter-cv-1">
+        Save for Public
+      </button>
+    </div>
+    <div class="copy-container">
+      <input type="text" id="copyInput" value="https://diklatkerja.com/profil/user-xyz-123" readonly>
+      <button onclick="copyText()">
+          <ion-icon name="copy-outline"></ion-icon>
+      </button>
+      <div id="copyNotification" class="notification">URL berhasil disalin!</div>
+    </div>
+
+  </div>
+  <div class="cv-content">
+    <!-- Bagian Informasi Pribadi-->
+    <div class="content-cv-1">
+      <h1>Informasi Pribadi</h1>
+      <div class="section-1">
+        <div class="picture-profile"><ion-icon name="person-circle-outline"></ion-icon></div>
+      </div>
+      <h2>Username</h2>
+      <div class="mini-container-cv">
+        <div class="mini-container-cv-1">
+          <h3>Email</h3>
+          <p>lispita.sari@student.president.ac.id</p>
+        </div>
+        <div class="mini-container-cv-1">
+          <h3>Jenis Kelamin</h3>
+          <p>Pria</p>
+        </div>
+        <div class="mini-container-cv-1">
+          <h3>Usia</h3>
+          <p>22 Tahun</p>
+        </div>
+        <div class="mini-container-cv-1">
+          <h3>Kabupaten</h3>
+          <p>Bekasi</p>
+        </div>
+        <div class="mini-container-cv-1">
+          <h3>Kota Provinsi</h3>
+          <p>Jawa Barat</p>
+        </div>
+        <div class="mini-container-cv-1">
+          <h3>Status</h3>
+          <p>Unemployed</p>
+        </div>
+      </div>
+      <div class="content-cv-1">
+        <!-- Tentang Saya-->
+        <h3>Tentang Saya</h3>
+        <p style="text-align: center; color:#a9a9a9;">Tambahkan Tentang Diri Anda</p>
+        <button class="button-add-cv" onclick="openModal('modal-about')">
+          <ion-icon name="add-outline"></ion-icon> Tambah
+        </button>
+      </div>
+      <div class="content-cv-1">
+        <h3>Portfolio Saya</h3>
+        <button class="button-portfolio-cv" onclick="openModal('modal-portfolio')">
+          <p>Tambahkan file atau link portofolio Anda</p>
+          <ion-icon name="folder-outline"></ion-icon>
+        </button>
+      </div>
+    </div>
+    <div class="content-cv-1">
+        <h1>Pendidikan</h1>
+        <div class="content-cv-2">
+          <div class="edit-del-cv">
+            <ion-icon name="trash-outline"></ion-icon>
+            <ion-icon name="create-outline"></ion-icon>
+          </div>
+          <div class="content-cv-2-1">
+            <div class="section-1-1">
+              <img src="image/edu-icon.png">
+            </div>
+            <div class="square-cv-1">
+              <h3>Universitas Presiden</h3>
+              <p>Program Studi: Sistem Informasi</p>
+              <p>Jenjang Pendidikan: S1</p>
+              <p>IPK 1.23</p>
+            </div>
+            <div class="square-cv-2">
+              <h3>September 2022 - Sekarang</h3>
+              <p>Jawa Barat</p>
+              <p>Cikarang</p>
+            </div>
+          </div>
+        </div>
+        <button class="button-add-cv" onclick="openModal('modal-pendidikan')">
+          <ion-icon name="add-outline"></ion-icon> Tambah
+        </button>
+    </div>
+    <div class="content-cv-1">
+      <h1>Pengalaman Kerja</h1>
+      <div class="content-cv-2">
+        <div class="edit-del-cv">
+          <ion-icon name="trash-outline"></ion-icon>
+          <ion-icon name="create-outline"></ion-icon>
+        </div>
+        <div class="content-cv-2-1">
+          <div class="section-1-1">
+            <img src="image/work-icon.png">
+          </div>
+          <div class="square-cv-1">
+            <h3>PT Sinar Jaya</h3>
+            <p>Kota Bekasi, Jawa Barat</p>
+            <p>Full Time</p>
+          </div>
+          <div class="square-cv-2">
+            <h3>Agustus 2022 - Sekarang</h3>
+          </div>
+        </div>
+        <p>Product Manager</p>
+        <div class="section-justify">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet est at nulla dictum vestibulum ac ut erat. Curabitur a orci at velit fringilla tincidunt nec ut nunc. Nulla facilisi. Aenean in efficitur eros. Phasellus posuere, odio a congue sodales, lectus enim tincidunt eros, a iaculis elit justo vel eros. Fusce non orci vitae libero euismod feugiat. Integer et nisi ac nisi sollicitudin pharetra vel ac arcu. Proin auctor ipsum vitae nunc dapibus, sed volutpat est volutpat. Donec mollis, magna id elementum convallis, felis lacus pharetra lectus, at varius odio urna et elit. Vestibulum pharetra, lorem ac auctor vehicula, felis erat laoreet odio, eget iaculis velit metus et tortor.</p>
+        </div>
+      </div>
+      <div class="content-cv-2">
+        <div class="edit-del-cv">
+          <ion-icon name="trash-outline"></ion-icon>
+          <ion-icon name="create-outline"></ion-icon>
+        </div>
+        <div class="content-cv-2-1">
+          <div class="section-1-1">
+            <img src="image/work-icon.png">
+          </div>
+          <div class="square-cv-1">
+            <h3>PT Sinar Jaya</h3>
+            <p>Kota Bekasi, Jawa Barat</p>
+            <p>Full Time</p>
+          </div>
+        </div>
+        <p>Agustus 2022 - Sekarang</p>
+        <p>Product Manager</p>
+        <div class="section-justify">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet est at nulla dictum vestibulum ac ut erat. Curabitur a orci at velit fringilla tincidunt nec ut nunc. Nulla facilisi. Aenean in efficitur eros. Phasellus posuere, odio a congue sodales, lectus enim tincidunt eros, a iaculis elit justo vel eros. Fusce non orci vitae libero euismod feugiat. Integer et nisi ac nisi sollicitudin pharetra vel ac arcu. Proin auctor ipsum vitae nunc dapibus, sed volutpat est volutpat. Donec mollis, magna id elementum convallis, felis lacus pharetra lectus, at varius odio urna et elit. Vestibulum pharetra, lorem ac auctor vehicula, felis erat laoreet odio, eget iaculis velit metus et tortor.</p>
+        </div>
+      </div>
+      <button class="button-add-cv"  onclick="openModal('modal-pengalaman')">
+        <ion-icon name="add-outline"></ion-icon> Tambah
+      </button>
+    </div>
+    <div class="content-cv-1">
+      <h1>Sertifikat</h1>
+      <div class="section-certf">
+          <div class="section-1-1">
+            <img src="image/certf-icon.png">
+          </div>
+          <div class="certf-2">
+            <div class="certf-2-1">
+              <h1>Merancang Content Strategy Dan Digital Marketing Ads yang Tepat dan Efektif</h1>
+              <p>Juli 2024</p>
+            </div>
+            <p>Nilai: 20/100</p>
+            <p>Organisasi yang mengeluarkan: diklatkerja</p>
+            <p>Nomor: 123456789132412532S</p>
+            <div class="certf-2-1">
+              <p>Dikeluarkan pada: 10 Agustus 2024 - No Expired Date</p>
+              <a href="#.html" onclick="openModal('modal-cert')">Lihat Sertifikat</a>
+          </div>
+          </div>
+      </div>
+      <button class="button-add-cv" onclick="openModal('modal-sertifikat')">
+        <ion-icon name="add-outline"></ion-icon> Tambah
+      </button>
+    </div>
+    <div class="content-cv-1">
+      <h1>Sertifikat Kompetensi Kerja</h1>
+      <div class="section-certf">
+          <div class="section-1-1">
+            <img src="image/medal-icon.png">
+          </div>
+          <div class="certf-2">
+            <div class="certf-2-1">
+              <h1>Ahli Teknik Bangunan Gedung</h1>
+              <p>Level 7 - Ahli Utama</p>
+            </div>
+            <p>Asosiasi: GAPENSI</p>
+            <p>Klasifikasi: Bangunan Gedung</p>
+            <p>Subklasifikasi: Arsitektur</p>
+            <p>Nomor: 123456789132412532S</p>
+            <div class="certf-2-1">
+              <p>Dikeluarkan pada: 10 Agustus 2024</p>
+              <a href="#.html" onclick="openModal('modal-cert')">Lihat Sertifikat</a>
+            </div>
+          </div>
+      </div>
+      <button class="button-add-cv" onclick="openModal('modal-skk')">
+        <ion-icon name="add-outline"></ion-icon> Tambah
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-overlay" onclick="closeModal()"></div>
+
+<div class="modal-cv-for-all hidden" id="modal-about">
+  <span class="close-modal" onclick="closeModal()">✖</span>
+  <div class="modal-input-about-cv">
+      <h1>Tentang Saya</h1>
+      <textarea placeholder="Tulis deskripsi tentang diri Anda..."></textarea>
+  </div>
+  <button class="modal-button">Simpan</button>
+</div>
+
+<div class="modal-cv-for-all hidden" id="modal-portfolio">
+  <span class="close-modal" onclick="closeModal()">✖</span>
+  <div class="modal-input-about-cv">
+    <h1>Portfolio Saya</h1>
+    <div class="modal-in-portfolio">
+      <input type="text" id="portfolioLink" placeholder="Masukkan Link atau File Portfolio Anda" oninput="handleInputChange()">
+      <ion-icon name="cloud-upload-outline" onclick="triggerFileUpload()"></ion-icon>
+      <input type="file" id="portofolioUpload" class="hidden-file-input" accept="application/pdf" onchange="handleFileUpload()">
+    </div>
+    <p class="file-name" id="fileName"></p>
+  </div>
+  <button class="modal-button">Simpan</button>
+</div>
+
+<div class="modal-cv-for-all hidden" id="modal-pendidikan">
+  <span class="close-modal" onclick="closeModal()">✖</span>
+  <div class="modal-input-about-cv">
+    <h1>Pendidikan</h1>
+    <div class="modal-in-portfolio">
+      <input type="text" id="institusiPendidikan" placeholder="Nama Institusi Pendidikan">
+      <input type="text" id="jurusan" placeholder="Jurusan">
+      <div class="mini-container-cv">
+        <input type="text" id="jenjangPendidikan" placeholder="Jenjang Pendidikan">
+        <input type="text" id="gpa" placeholder="GPA">
+        <input type="text" id="provinsi" placeholder="Provinsi">
+        <input type="text" id="kabupaten" placeholder="Kabupaten">
+        <input type="date" id="dateFrom">
+        <input type="date" id="dateTo">
+      </div>
+    </div>
+  </div>
+  <button class="modal-button">Simpan</button>
+</div>
+
+<div class="modal-cv-for-all hidden" id="modal-pengalaman">
+  <span class="close-modal" onclick="closeModal()">✖</span>
+  <div class="modal-input-about-cv">
+    <h1>Pengalaman Kerja</h1>
+    <div class="modal-in-portfolio">
+      <input type="text" id="institusiPerusahaan" placeholder="Nama Institusi Perusahaan">
+      <input type="text" id="jabatan" placeholder="Jabatan">
+      <select name="status" id="status" placeholder="Status">
+        <option value="" disabled selected hidden>Status</option>
+        <option value="fulltime">Fulltime</option>
+        <option value="part-time">Part-Time</option>
+        <option value="intern">Intern</option>
+        <option value="freelnacer">Freelancer</option>
+      </select>
+      <div class="mini-container-cv">
+        <input type="text" id="provinsi" placeholder="Provinsi">
+        <input type="text" id="kabupaten" placeholder="Kabupaten">
+        <label for="dateFrom">Date From</label>
+        <label for="dateFrom">Date To</label>
+        <input type="date" id="dateFrom">
+        <input type="date" id="dateTo">
+      </div>
+      <div class="modal-input-about-cv">
+        <textarea placeholder="Deskripsikan Singkat Tanggung Jawab Anda"></textarea>
+      </div>
+    </div>
+  </div>
+  <button class="modal-button">Simpan</button>
+</div>
+
+<div class="modal-cv-for-all hidden" id="modal-sertifikat">
+  <span class="close-modal" onclick="closeModal()">✖</span>
+  <div class="modal-input-about-cv">
+    <h1>Sertifikat</h1>
+    <div class="modal-in-portfolio">
+      <input type="text" id="judulSertifikat" placeholder="Nama Sertifikat">
+      <input type="text" id="organisasi" placeholder="Nama Organisasi yang Mengeluarkan">
+      <input type="text" id="nomorRegistrasi" placeholder="Nomor Registrasi">
+      <input type="text" id="nilai" placeholder="Nilai">
+      <div class="mini-container-cv">
+        <label for="dateFrom">Dikeluarkan Pada</label>
+        <label for="dateFrom">Sampai</label>
+        <input type="date" id="dateFrom">
+        <input type="date" id="dateTo">
+      </div>
+      <div class="file-upload-section">
+        <label for="fileUpload" class="file-upload-label">
+          <span class="file-upload-text">Unggah File Sertifikat</span><br>
+          <span class="file-upload-icon">📁</span>
+        </label>
+        <input type="file" id="fileUpload" class="file-upload-input">
+      </div>
+    </div>
+  </div>
+  <button class="modal-button">Simpan</button>
+</div>
+
+<div class="modal-cv-for-all hidden" id="modal-skk">
+  <span class="close-modal" onclick="closeModal()">✖</span>
+  <div class="modal-input-about-cv">
+    <h1>Sertifikat Kompetensi Kerja (SKK)</h1>
+    <div class="modal-in-portfolio">
+      <input type="text" id="judulSertifikat" placeholder="Nama Sertifikat (Contoh: Ahlī Teknik Bangunan Gedung)">
+      <input type="text" id="organisasi" placeholder="Nama Organisasi yang Mengeluarkan (Contoh: GAPENSI)">
+      <input type="text" id="nomorRegistrasi" placeholder="Nomor Registrasi (Contoh: 123456789132412532S)">
+      <input type="text" id="klasifikasi" placeholder="Klasifikasi (Contoh: Bangunan Gedung)">
+      <input type="text" id="subklasifikasi" placeholder="Subklasifikasi (Contoh: Arsitektur)">
+      <div class="mini-container-cv">
+        <label for="dateFrom">Dikeluarkan Pada</label>
+        <label for="dateTo">Tanggal Kedaluwarsa (Opsional)</label>
+        <input type="date" id="dateFrom">
+        <input type="date" id="dateTo">
+      </div>
+      <div class="file-upload-section">
+        <label for="fileUpload" class="file-upload-label">
+          <span class="file-upload-text">Unggah File Sertifikat</span><br>
+          <span class="file-upload-icon">📁</span>
+        </label>
+        <input type="file" id="fileUpload" class="file-upload-input">
+      </div>
+    </div>
+  </div>
+  <button class="modal-button">Simpan</button>
+</div>
+
+<div class="modal-cv-for-all hidden" id="modal-cert">
+  <h2>Sertifikat</h2>
+  <img src="image/dummy-certificate.jpeg" id="cert-image">
+  <span class="close-modal" onclick="closeModal()">✖</span>
+</div>
+<script>
+function openModal(id) {
+  document.getElementById(id).classList.remove('hidden');
+  document.getElementById("modal-overlay").classList.remove("hidden");
+}
+
+function closeModal() {
+  document.querySelectorAll('.modal-cv-for-all').forEach(modal => {
+    modal.classList.add('hidden');
+  });
+  document.getElementById("modal-overlay").classList.add("hidden");
+}
+
+function triggerFileUpload() {
+        document.getElementById('portofolioUpload').click();
+    }
+
+    function handleFileUpload() {
+        const fileInput = document.getElementById('portofolioUpload');
+        const fileNameDisplay = document.getElementById('fileName');
+        const portfolioLink = document.getElementById('portfolioLink');
+
+        if (fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+
+            if (file.type === "application/pdf") {
+                fileNameDisplay.textContent = "File diunggah: " + file.name;
+                fileNameDisplay.style.display = "block";
+                portfolioLink.value = "";  
+                portfolioLink.disabled = true; 
+            } else {
+                alert("Hanya file PDF yang diperbolehkan!");
+                fileInput.value = ""; 
+            }
+        }
+    }
+
+    function handleInputChange() {
+        const portfolioLink = document.getElementById('portfolioLink');
+        const fileInput = document.getElementById('portofolioUpload');
+        const fileNameDisplay = document.getElementById('fileName');
+
+        if (portfolioLink.value.trim() !== "") {
+            fileInput.value = ""; 
+            fileNameDisplay.style.display = "none";
+            portfolioLink.disabled = false;
+        }
+    }
+
+    document.querySelectorAll(".toggle-dropdown").forEach(button => {
+    button.addEventListener("click", function () {
+    const dropdownContent = this.nextElementSibling.nextElementSibling; 
+    const isVisible = dropdownContent.style.display === "block";
+    
+  });
+});
+
+document.querySelectorAll(".user-filter").forEach(userFilter => {
+  
+  let dropdownButton = userFilter.querySelector(".dropdown button");
+  let dropdownContent = userFilter.querySelector(".dropdown-content");
+  
+  dropdownButton.addEventListener("click", function () {
+    dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+  });
+  
+  let toggleSwitch = userFilter.querySelector(".switch input");
+  let checkboxes = userFilter.querySelectorAll(".dropdown-content input");
+  
+  toggleSwitch.addEventListener("change", function () {
+    checkboxes.forEach(checkbox => {
+      checkbox.checked = toggleSwitch.checked;
+    });
+    dropdownContent.style.display = toggleSwitch.checked ? "block" : "none";
+
+    const dropdownButton = userFilter.querySelector(".toggle-dropdown");
+    
+  });
+  
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener("change", function () {
+      let allChecked = [...checkboxes].every(cb => cb.checked);
+      toggleSwitch.checked = allChecked;
+    });
+  });
+});
+
+  function copyText() {
+    let copyInput = document.getElementById("copyInput");
+    copyInput.select();
+    copyInput.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(copyInput.value).then(() => {
+      let notification = document.getElementById("copyNotification");
+      notification.classList.add("show");
+      setTimeout(() => {
+        notification.classList.remove("show");
+      }, 3000);
+    }).catch(err => {
+      console.error("Gagal menyalin: ", err);
+    });
+  }
+</script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script
+</body>
+</html>
