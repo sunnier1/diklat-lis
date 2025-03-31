@@ -11,7 +11,7 @@
         <button class="share-button" onclick="openShareModal()">
             <ion-icon name="download-outline"></ion-icon> Download
         </button>        
-        <button class="share-button" onclick="openShareModal()">
+        <button class="share-button" onclick="openModal('share-modal')">
             <ion-icon name="share-social-outline"></ion-icon> Share
         </button>        
     </div>
@@ -148,16 +148,22 @@
                     <p>Subklasifikasi: Arsitektur</p>
                     <div class="certf-2-1">
                         <p>Dikeluarkan pada: 10 Agustus 2024</p>
-                        <a href="#.html">Lihat Sertifikat</a>
+                        <a href="#.html" onclick="openModal('modal-cert')">Lihat Sertifikat</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="modal-overlay hidden" id="modal-overlay" onclick="closeModal()"></div>
+    <div class="modal-cv-for-all hidden" id="modal-cert">
+        <h2>Sertifikat</h2>
+        <img src="image/dummy-certificate.jpeg" id="cert-image">
+        <span class="close-modal" onclick="closeModal()">✖</span>
+    </div>
     <div class="modal-overlay-1" onclick="closeShareModal()"></div>
     <div id="notification" class="notification">Link berhasil disalin!</div>
-    <div class="share-modal">
-        <span class="close-modal" onclick="closeShareModal()">✖</span>
+    <div class="modal-cv-for-all hidden" id="share-modal">
+        <span class="close-modal" onclick="closeModal()">✖</span>
         <h3>Bagikan Link</h3>
         <div class="share-modal-input">
             <input type="text" id="shareLink" value="https://diklatkerja.com/profil/user-xyz-123" readonly>
@@ -172,23 +178,24 @@
             <a href="#" id="whatsappShare"><ion-icon name="logo-whatsapp"></ion-icon></a>
         </div>
     </div>
-</body>
-<script>
-function openShareModal() {
-    document.querySelector(".share-modal").style.display = "block";
-    document.querySelector(".modal-overlay-1").style.display = "block";
+    <script>
+function openModal(id) {
+  document.getElementById(id).classList.remove('hidden');
+  document.getElementById("modal-overlay").classList.remove("hidden");
 }
 
-function closeShareModal() {
-    document.querySelector(".share-modal").style.display = "none";
-    document.querySelector(".modal-overlay-1").style.display = "none";
+function closeModal() {
+  document.querySelectorAll('.modal-cv-for-all').forEach(modal => {
+    modal.classList.add('hidden');
+  });
+  document.getElementById("modal-overlay").classList.add("hidden");
 }
 
 function copyShareLink() {
     let shareLink = document.getElementById("shareLink");
     shareLink.select();
     shareLink.setSelectionRange(0, 99999); 
-
+    
     navigator.clipboard.writeText(shareLink.value).then(() => {
         showNotification("Link berhasil disalin!");
     }).catch(err => {
@@ -200,11 +207,11 @@ function showNotification(message) {
     let notification = document.getElementById("notification");
     notification.textContent = message;
     notification.classList.add("show");
-
+    
     setTimeout(() => {
         notification.classList.remove("show");
     }, 3000); 
-
+    
 }
 
 document.getElementById("linkedinShare").href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareLink.value)}`;
@@ -213,5 +220,7 @@ document.getElementById("twitterShare").href = `https://twitter.com/intent/tweet
 document.getElementById("whatsappShare").href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareLink.value)}`;
 </script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="script.js"></script>
+</body>
 </html>
