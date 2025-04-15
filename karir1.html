@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karir Diklatkerja</title>
+  <link rel="stylesheet" href="style/listyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"><style>
+    body{
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body> 
+    <div class="career-section-1">
+      <div class="career-section-1-1">
+        <select id="job-field" class="career-field-select">
+          <option value="" disabled hidden selected>Bidang Pekerjaan</option>
+          <option value="it">Teknologi Informasi (IT)</option>
+          <option value="finance">Keuangan & Akuntansi</option>
+          <option value="marketing">Pemasaran</option>
+          <option value="sales">Sales</option>
+          <option value="design">Desain Grafis & Kreatif</option>
+          <option value="hr">Sumber Daya Manusia (HR)</option>
+          <option value="admin">Administrasi</option>
+          <option value="customer-service">Customer Service</option>
+          <option value="logistics">Logistik & Pergudangan</option>
+          <option value="purchasing">Pengadaan & Pembelian</option>
+          <option value="operation">Operasional</option>
+          <option value="legal">Hukum & Legalitas</option>
+          <option value="education">Pendidikan & Pelatihan</option>
+          <option value="healthcare">Kesehatan & Medis</option>
+          <option value="engineering">Teknik & Rekayasa</option>
+          <option value="manufacturing">Manufaktur & Produksi</option>
+          <option value="hospitality">Perhotelan & Pariwisata</option>
+          <option value="construction">Konstruksi & Properti</option>
+          <option value="research">Riset & Pengembangan</option>
+          <option value="content">Penulisan & Content Creator</option>
+          <option value="public-relations">Hubungan Masyarakat (PR)</option>
+          <option value="data">Data Analyst / Data Scientist</option>
+          <option value="project-management">Manajemen Proyek</option>
+          <option value="others">Bidang Lainnya</option>
+        </select>        
+        <select id="job-field" class="career-city-select">
+          <option value="" disabled hidden selected>Lokasi</option>
+          <option value="aceh">Aceh</option>
+          <option value="sumatera-utara">Sumatera Utara</option>
+          <option value="sumatera-barat">Sumatera Barat</option>
+          <option value="riau">Riau</option>
+          <option value="kepulauan-riau">Kepulauan Riau</option>
+          <option value="jambi">Jambi</option>
+          <option value="bengkulu">Bengkulu</option>
+          <option value="sumatera-selatan">Sumatera Selatan</option>
+          <option value="bangka-belitung">Kepulauan Bangka Belitung</option>
+          <option value="lampung">Lampung</option>
+          <option value="banten">Banten</option>
+          <option value="jakarta">DKI Jakarta</option>
+          <option value="jawa-barat">Jawa Barat</option>
+          <option value="jawa-tengah">Jawa Tengah</option>
+          <option value="yogyakarta">DI Yogyakarta</option>
+          <option value="jawa-timur">Jawa Timur</option>
+          <option value="bali">Bali</option>
+          <option value="ntb">Nusa Tenggara Barat</option>
+          <option value="ntt">Nusa Tenggara Timur</option>
+          <option value="kalimantan-barat">Kalimantan Barat</option>
+          <option value="kalimantan-tengah">Kalimantan Tengah</option>
+          <option value="kalimantan-selatan">Kalimantan Selatan</option>
+          <option value="kalimantan-timur">Kalimantan Timur</option>
+          <option value="kalimantan-utara">Kalimantan Utara</option>
+          <option value="sulawesi-utara">Sulawesi Utara</option>
+          <option value="sulawesi-tengah">Sulawesi Tengah</option>
+          <option value="sulawesi-selatan">Sulawesi Selatan</option>
+          <option value="sulawesi-tenggara">Sulawesi Tenggara</option>
+          <option value="sulawesi-barat">Sulawesi Barat</option>
+          <option value="gorontalo">Gorontalo</option>
+          <option value="maluku">Maluku</option>
+          <option value="maluku-utara">Maluku Utara</option>
+          <option value="papua">Papua</option>
+          <option value="papua-barat">Papua Barat</option>
+          <option value="papua-pegunungan">Papua Pegunungan</option>
+          <option value="papua-tengah">Papua Tengah</option>
+          <option value="papua-selatan">Papua Selatan</option>
+          <option value="papua-barat-daya">Papua Barat Daya</option>
+        </select>        
+      </div>
+
+      <div class="custom-select" id="location-select">
+        <div class="select-header">
+            <div class="select-title">
+                <span>Lokasi</span>
+                <span class="select-count" id="location-count">0</span>
+            </div>
+            <i class="fas fa-chevron-down dropdown-icon"></i>
+        </div>
+        <div class="select-options">
+            <div class="search-options">
+                <input type="text" placeholder="Search..." class="option-search">
+            </div>
+            <div class="option-item">
+                <div class="checkbox"></div>
+                <span>Jakarta</span>
+            </div>
+            <div class="option-item">
+                <div class="checkbox"></div>
+                <span>Bandung</span>
+            </div>
+            <div class="option-item">
+                <div class="checkbox"></div>
+                <span>Surabaya</span>
+            </div>
+            <div class="option-item">
+                <div class="checkbox"></div>
+                <span>Yogyakarta</span>
+            </div>
+            <div class="option-item">
+                <div class="checkbox"></div>
+                <span>Bali</span>
+            </div>
+        </div>
+    </div>
+      <div class="career-section-1-2">
+        <div class="search-bar-career-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" class="search-bar-career-input" name="search-bar-career" placeholder="Cari Pekerjaan">
+          <button class="search-career-btn">Cari</button>
+        </div>
+      </div>
+    </div>
+    <div class="career-section-2">
+      <div class="career-list-scrool">
+        <div class="career-list" data-job="1">
+          <div class="flex-section-up">
+            <div class="career-logo"><img src="image/img_logo.png"></div>
+            <div class="square-cv-1">
+              <h3>Administrator Officer</h3>
+              <p>diklatkerja</p>
+              <p>Jakarta, Indonesia</p>
+            </div>
+          </div>
+        </div>
+        <div class="career-list" data-job="2">
+          <div class="flex-section-up">
+            <div class="career-logo"><img src="image/img_logo.png"></div>
+            <div class="square-cv-1">
+              <h3>Business Development</h3>
+              <p>diklatkerja</p>
+              <p>Denpasar, Bali</p>
+            </div>
+          </div>
+        </div>
+        <div class="career-list" data-job="3">
+          <div class="flex-section-up">
+            <div class="career-logo"><img src="image/img_logo.png"></div>
+            <div class="square-cv-1">
+              <h3>Marketing Manager</h3>
+              <p>diklatkerja</p>
+              <p>Semarang, Jawa Tengah</p>
+            </div>
+          </div>
+        </div>
+        <div class="career-list" data-job="4">
+          <div class="flex-section-up">
+            <div class="career-logo"><img src="image/img_logo.png"></div>
+            <div class="square-cv-1">
+              <h3>Back-End Engineer</h3>
+              <p>diklatkerja</p>
+              <p>Semarang, Jawa Tengah</p>
+            </div>
+          </div>
+        </div>
+        <div class="career-list" data-job="5">
+          <div class="flex-section-up">
+            <div class="career-logo"><img src="image/img_logo.png"></div>
+            <div class="square-cv-1">
+              <h3>Administrator Officer</h3>
+              <p>diklatkerja</p>
+              <p>Jakarta, Indonesia</p>
+            </div>
+          </div>
+        </div>
+        <div class="career-list" data-job="5">
+          <div class="flex-section-up">
+            <div class="career-logo"><img src="image/img_logo.png"></div>
+            <div class="square-cv-1">
+              <h3>Administrator Officer</h3>
+              <p>diklatkerja</p>
+              <p>Jakarta, Indonesia</p>
+            </div>
+          </div>
+        </div>
+        <div class="career-list" data-job="5">
+          <div class="flex-section-up">
+            <div class="career-logo"><img src="image/img_logo.png"></div>
+            <div class="square-cv-1">
+              <h3>Administrator Officer</h3>
+              <p>diklatkerja</p>
+              <p>Jakarta, Indonesia</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="career-content-container">
+        <div class="career-content" data-job="1">
+          <h3>Administrator Officer</h3>
+          <div class="career-content-1">
+            <p>diklatkerja</p>
+            <p>Tangerang, Indonesia</p>
+            <p>3 days ago</p>
+          </div>
+          <div class="career-content-1">
+            <img src="image/work-icon.png" alt="Work Icon">
+            <p>Internship</p>
+            <p>Administrative</p>
+          </div>
+          <button>Lamar Pekerjaan</button>
+          <a class="share-link-modal">Bagikan</a>
+          <div class="content-career-1">
+            <h4>Deskripsi Pekerjaan</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet est at nulla dictum vestibulum ac ut erat. Curabitur a orci at velit fringilla tincidunt nec ut nunc. Nulla facilisi. Aenean in efficitur eros. Phasellus posuere, odio a congue sodales, lectus enim tincidunt eros, a iaculis elit justo vel eros. Fusce non orci vitae libero euismod feugiat. Integer et nisi ac nisi sollicitudin pharetra vel ac arcu. Proin auctor ipsum vitae nunc dapibus, sed volutpat est volutpat. Donec mollis, magna id elementum convallis, felis lacus pharetra lectus, at varius odio urna et elit. Vestibulum pharetra, lorem ac auctor vehicula, felis erat laoreet odio, eget iaculis velit metus et tortor.</p>
+            <div class="career-requirement">
+              <p>Requirement</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet est at nulla dictum vestibulum ac ut erat. Curabitur a orci at velit fringilla tincidunt nec ut nunc. Nulla facilisi. Aenean in efficitur eros. Phasellus posuere, odio a congue sodales, lectus enim tincidunt eros, a iaculis elit justo vel eros. Fusce non orci vitae libero euismod feugiat. Integer et nisi ac nisi sollicitudin pharetra vel ac arcu. Proin auctor ipsum vitae nunc dapibus, sed volutpat est volutpat. Donec mollis, magna id elementum convallis, felis lacus pharetra lectus, at varius odio urna et elit. Vestibulum pharetra, lorem ac auctor vehicula, felis erat laoreet odio, eget iaculis velit metus et tortor.</p>
+              <p>Additional</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet est at nulla dictum vestibulum ac ut erat. Curabitur a orci at velit fringilla tincidunt nec ut nunc. Nulla facilisi. Aenean in efficitur eros. Phasellus posuere, odio a congue sodales, lectus enim tincidunt eros, a iaculis elit justo vel eros. Fusce non orci vitae libero euismod feugiat. Integer et nisi ac nisi sollicitudin pharetra vel ac arcu. Proin auctor ipsum vitae nunc dapibus, sed volutpat est volutpat. Donec mollis, magna id elementum convallis, felis lacus pharetra lectus, at varius odio urna et elit. Vestibulum pharetra, lorem ac auctor vehicula, felis erat laoreet odio, eget iaculis velit metus et tortor.</p>
+            </div>
+          </div>
+          <div class="company-about-career">
+            <h2>Tentang Perusahaan</h2>
+            <div class="company-about-top">
+              <div class="career-logo"><img src="image/img_logo.png"></div>
+              <div class="career-content-2">
+                <h4>Diklat</h4>
+                <div class="career-content-1">
+                  <img src="image/work-icon.png" alt="Work Icon">
+                  <p name="bidang_perusahaan">Pendidikan dan Pelatihan</p>
+                </div>
+              </div>
+            </div>
+            <div class="description-company">
+              <p>Diklatkerja adalah platform pembelajaran online yang menyediakan kursus bersertifikat di bidang keinsinyuran dan profesional lainnya. Didirikan pada tahun 2019, platform ini bertujuan untuk menjembatani kesenjangan antara dunia akademik dan industri dengan menawarkan pelatihan yang relevan dan aplikatif. Melalui program Continuing Professional Development (CPD), Diklatkerja mendukung mahasiswa, fresh graduate, dan profesional dalam mengembangkan kompetensi mereka sesuai dengan kebutuhan industri yang terus berkembang. Peserta dapat mengikuti webinar langsung maupun rekaman, berinteraksi dengan instruktur berpengalaman, serta memperoleh sertifikat setelah menyelesaikan ujian yang disediakan.</p>
+            </div>
+            <div class="gmaps-location-company">
+              <p>gmaps</p>
+            </div>
+          </div>
+        </div> 
+        <div class="career-content" data-job="2">
+          <h3>Business Development</h3>
+          <div class="career-content-1">
+            <p>diklatkerja</p>
+            <p>Tangerang, Indonesia</p>
+            <p>5 days ago</p>
+          </div>
+          <div class="career-content-1">
+            <img src="image/work-icon.png" alt="Work Icon">
+            <p>Full-time</p>
+            <p>Administrative</p>
+          </div>
+          <button>Lamar Pekerjaan</button>
+          <a class="share-link-modal">Bagikan</a>
+          <div class="content-career-1">
+            <h4>Deskripsi Pekerjaan</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet est at nulla dictum vestibulum ac ut erat. Curabitur a orci at velit fringilla tincidunt nec ut nunc. Nulla facilisi. Aenean in efficitur eros. Phasellus posuere, odio a congue sodales, lectus enim tincidunt eros, a iaculis elit justo vel eros. Fusce non orci vitae libero euismod feugiat. Integer et nisi ac nisi sollicitudin pharetra vel ac arcu. Proin auctor ipsum vitae nunc dapibus, sed volutpat est volutpat. Donec mollis, magna id elementum convallis, felis lacus pharetra lectus, at varius odio urna et elit. Vestibulum pharetra, lorem ac auctor vehicula, felis erat laoreet odio, eget iaculis velit metus et tortor.</p>
+            <div class="career-requirement">
+              <p>Requirement</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet est at nulla dictum vestibulum ac ut erat. Curabitur a orci at velit fringilla tincidunt nec ut nunc. Nulla facilisi. Aenean in efficitur eros. Phasellus posuere, odio a congue sodales, lectus enim tincidunt eros, a iaculis elit justo vel eros. Fusce non orci vitae libero euismod feugiat. Integer et nisi ac nisi sollicitudin pharetra vel ac arcu. Proin auctor ipsum vitae nunc dapibus, sed volutpat est volutpat. Donec mollis, magna id elementum convallis, felis lacus pharetra lectus, at varius odio urna et elit. Vestibulum pharetra, lorem ac auctor vehicula, felis erat laoreet odio, eget iaculis velit metus et tortor.</p>
+              <p>Additional</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet est at nulla dictum vestibulum ac ut erat. Curabitur a orci at velit fringilla tincidunt nec ut nunc. Nulla facilisi. Aenean in efficitur eros. Phasellus posuere, odio a congue sodales, lectus enim tincidunt eros, a iaculis elit justo vel eros. Fusce non orci vitae libero euismod feugiat. Integer et nisi ac nisi sollicitudin pharetra vel ac arcu. Proin auctor ipsum vitae nunc dapibus, sed volutpat est volutpat. Donec mollis, magna id elementum convallis, felis lacus pharetra lectus, at varius odio urna et elit. Vestibulum pharetra, lorem ac auctor vehicula, felis erat laoreet odio, eget iaculis velit metus et tortor.</p>
+            </div>
+          </div>
+          <div class="company-about-career">
+            <h2>Tentang Perusahaan</h2>
+            <div class="company-about-top">
+              <div class="career-logo"><img src="image/img_logo.png"></div>
+              <div class="career-content-2">
+                <h4>Diklat</h4>
+                <div class="career-content-1">
+                  <img src="image/work-icon.png" alt="Work Icon">
+                  <p name="bidang_perusahaan">Pendidikan dan Pelatihan</p>
+                </div>
+              </div>
+            </div>
+            <div class="description-company">
+              <p>Diklatkerja adalah platform pembelajaran online yang menyediakan kursus bersertifikat di bidang keinsinyuran dan profesional lainnya. Didirikan pada tahun 2019, platform ini bertujuan untuk menjembatani kesenjangan antara dunia akademik dan industri dengan menawarkan pelatihan yang relevan dan aplikatif. Melalui program Continuing Professional Development (CPD), Diklatkerja mendukung mahasiswa, fresh graduate, dan profesional dalam mengembangkan kompetensi mereka sesuai dengan kebutuhan industri yang terus berkembang. Peserta dapat mengikuti webinar langsung maupun rekaman, berinteraksi dengan instruktur berpengalaman, serta memperoleh sertifikat setelah menyelesaikan ujian yang disediakan.</p>
+            </div>
+            <div class="gmaps-location-company">
+              <p>gmaps</p>
+            </div>
+          </div>
+        </div> 
+        <div class="career-content" data-job="3">
+          <h3>Marketing Manager</h3>
+          <div class="career-content-1">
+            <p>diklatkerja</p>
+            <p>Semarang, Jawa Tengah</p>
+            <p>5 days ago</p>
+          </div>
+          <div class="career-content-1">
+            <img src="image/work-icon.png" alt="Work Icon">
+            <p>Full-time</p>
+            <p>Administrative</p>
+          </div>
+          <button>Lamar Pekerjaan</button>
+          <a class="share-link-modal">Bagikan</a>
+          <div class="content-career-1">
+            <h4>Deskripsi Pekerjaan</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet est at nulla dictum vestibulum ac ut erat. Curabitur a orci at velit fringilla tincidunt nec ut nunc. Nulla facilisi. Aenean in efficitur eros. Phasellus posuere, odio a congue sodales, lectus enim tincidunt eros, a iaculis elit justo vel eros. Fusce non orci vitae libero euismod feugiat. Integer et nisi ac nisi sollicitudin pharetra vel ac arcu. Proin auctor ipsum vitae nunc dapibus, sed volutpat est volutpat. Donec mollis, magna id elementum convallis, felis lacus pharetra lectus, at varius odio urna et elit. Vestibulum pharetra, lorem ac auctor vehicula, felis erat laoreet odio, eget iaculis velit metus et tortor.</p>
+            <div class="career-requirement">
+              <p>Requirement</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet est at nulla dictum vestibulum ac ut erat. Curabitur a orci at velit fringilla tincidunt nec ut nunc. Nulla facilisi. Aenean in efficitur eros. Phasellus posuere, odio a congue sodales, lectus enim tincidunt eros, a iaculis elit justo vel eros. Fusce non orci vitae libero euismod feugiat. Integer et nisi ac nisi sollicitudin pharetra vel ac arcu. Proin auctor ipsum vitae nunc dapibus, sed volutpat est volutpat. Donec mollis, magna id elementum convallis, felis lacus pharetra lectus, at varius odio urna et elit. Vestibulum pharetra, lorem ac auctor vehicula, felis erat laoreet odio, eget iaculis velit metus et tortor.</p>
+              <p>Additional</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet est at nulla dictum vestibulum ac ut erat. Curabitur a orci at velit fringilla tincidunt nec ut nunc. Nulla facilisi. Aenean in efficitur eros. Phasellus posuere, odio a congue sodales, lectus enim tincidunt eros, a iaculis elit justo vel eros. Fusce non orci vitae libero euismod feugiat. Integer et nisi ac nisi sollicitudin pharetra vel ac arcu. Proin auctor ipsum vitae nunc dapibus, sed volutpat est volutpat. Donec mollis, magna id elementum convallis, felis lacus pharetra lectus, at varius odio urna et elit. Vestibulum pharetra, lorem ac auctor vehicula, felis erat laoreet odio, eget iaculis velit metus et tortor.</p>
+            </div>
+          </div>
+          <div class="company-about-career">
+            <h2>Tentang Perusahaan</h2>
+            <div class="company-about-top">
+              <div class="career-logo"><img src="image/img_logo.png"></div>
+              <div class="career-content-2">
+                <h4>Diklat</h4>
+                <div class="career-content-1">
+                  <img src="image/work-icon.png" alt="Work Icon">
+                  <p name="bidang_perusahaan">Pendidikan dan Pelatihan</p>
+                </div>
+              </div>
+            </div>
+            <div class="description-company">
+              <p>Diklatkerja adalah platform pembelajaran online yang menyediakan kursus bersertifikat di bidang keinsinyuran dan profesional lainnya. Didirikan pada tahun 2019, platform ini bertujuan untuk menjembatani kesenjangan antara dunia akademik dan industri dengan menawarkan pelatihan yang relevan dan aplikatif. Melalui program Continuing Professional Development (CPD), Diklatkerja mendukung mahasiswa, fresh graduate, dan profesional dalam mengembangkan kompetensi mereka sesuai dengan kebutuhan industri yang terus berkembang. Peserta dapat mengikuti webinar langsung maupun rekaman, berinteraksi dengan instruktur berpengalaman, serta memperoleh sertifikat setelah menyelesaikan ujian yang disediakan.</p>
+            </div>
+            <div class="gmaps-location-company">
+              <p>gmaps</p>
+            </div>
+          </div>
+        </div> 
+        <div class="career-content" data-job="4">
+          <h3>Back-End Engineer</h3>
+          <div class="career-content-1">
+            <p>diklatkerja</p>
+            <p>Semarang, Jawa Tengah</p>
+            <p>5 days ago</p>
+          </div>
+          <div class="career-content-1">
+            <img src="image/work-icon.png" alt="Work Icon">
+            <p>Internship</p>
+            <p>Technical</p>
+          </div>
+          <button>Lamar Pekerjaan</button>
+          <a class="share-link-modal">Bagikan</a>
+          <div class="content-career-1">
+            <h4>Deskripsi Pekerjaan</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet est at nulla dictum vestibulum ac ut erat. Curabitur a orci at velit fringilla tincidunt nec ut nunc. Nulla facilisi. Aenean in efficitur eros. Phasellus posuere, odio a congue sodales, lectus enim tincidunt eros, a iaculis elit justo vel eros. Fusce non orci vitae libero euismod feugiat. Integer et nisi ac nisi sollicitudin pharetra vel ac arcu. Proin auctor ipsum vitae nunc dapibus, sed volutpat est volutpat. Donec mollis, magna id elementum convallis, felis lacus pharetra lectus, at varius odio urna et elit. Vestibulum pharetra, lorem ac auctor vehicula, felis erat laoreet odio, eget iaculis velit metus et tortor.</p>
+            <div class="career-requirement">
+              <p>Requirement</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet est at nulla dictum vestibulum ac ut erat. Curabitur a orci at velit fringilla tincidunt nec ut nunc. Nulla facilisi. Aenean in efficitur eros. Phasellus posuere, odio a congue sodales, lectus enim tincidunt eros, a iaculis elit justo vel eros. Fusce non orci vitae libero euismod feugiat. Integer et nisi ac nisi sollicitudin pharetra vel ac arcu. Proin auctor ipsum vitae nunc dapibus, sed volutpat est volutpat. Donec mollis, magna id elementum convallis, felis lacus pharetra lectus, at varius odio urna et elit. Vestibulum pharetra, lorem ac auctor vehicula, felis erat laoreet odio, eget iaculis velit metus et tortor.</p>
+              <p>Additional</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet est at nulla dictum vestibulum ac ut erat. Curabitur a orci at velit fringilla tincidunt nec ut nunc. Nulla facilisi. Aenean in efficitur eros. Phasellus posuere, odio a congue sodales, lectus enim tincidunt eros, a iaculis elit justo vel eros. Fusce non orci vitae libero euismod feugiat. Integer et nisi ac nisi sollicitudin pharetra vel ac arcu. Proin auctor ipsum vitae nunc dapibus, sed volutpat est volutpat. Donec mollis, magna id elementum convallis, felis lacus pharetra lectus, at varius odio urna et elit. Vestibulum pharetra, lorem ac auctor vehicula, felis erat laoreet odio, eget iaculis velit metus et tortor.</p>
+            </div>
+          </div>
+          <div class="company-about-career">
+            <h2>Tentang Perusahaan</h2>
+            <div class="company-about-top">
+              <div class="career-logo"><img src="image/img_logo.png"></div>
+              <div class="career-content-2">
+                <h4>Diklat</h4>
+                <div class="career-content-1">
+                  <img src="image/work-icon.png" alt="Work Icon">
+                  <p name="bidang_perusahaan">Pendidikan dan Pelatihan</p>
+                </div>
+              </div>
+            </div>
+            <div class="description-company">
+              <p>Diklatkerja adalah platform pembelajaran online yang menyediakan kursus bersertifikat di bidang keinsinyuran dan profesional lainnya. Didirikan pada tahun 2019, platform ini bertujuan untuk menjembatani kesenjangan antara dunia akademik dan industri dengan menawarkan pelatihan yang relevan dan aplikatif. Melalui program Continuing Professional Development (CPD), Diklatkerja mendukung mahasiswa, fresh graduate, dan profesional dalam mengembangkan kompetensi mereka sesuai dengan kebutuhan industri yang terus berkembang. Peserta dapat mengikuti webinar langsung maupun rekaman, berinteraksi dengan instruktur berpengalaman, serta memperoleh sertifikat setelah menyelesaikan ujian yang disediakan.</p>
+            </div>
+            <div class="gmaps-location-company">
+              <p>gmaps</p>
+            </div>
+          </div>
+        </div> 
+      </div>
+    </div>
+    <!-- Modal -->
+<div class="application-modal" id="applicationModal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2>Lamar Pekerjaan</h2>
+    <p class="job-title-modal" id="modalJobTitle"></p>
+    <p class="company-name-modal" id="modalCompanyName"></p>
+    
+    <div class="application-options">
+      <div class="application-option" id="applyWithProfile">
+        <div class="option-icon">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <h3>Lamar dengan Profil</h3>
+        <p>Gunakan profil Diklatkerja Anda untuk melamar</p>
+        <button class="apply-option-btn">Lamar Sekarang</button>
+      </div>
+      
+      <div class="application-option" id="applyManually">
+        <div class="option-icon">
+          <i class="fas fa-file-upload"></i>
+        </div>
+        <h3>Lamar Manual</h3>
+        <p>Unggah CV dan dokumen pendukung</p>
+        <button class="apply-option-btn">Lanjutkan</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="manual-application-modal" id="manualApplicationModal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2>Lamar Pekerjaan</h2>
+    <p class="job-title-modal" id="manualModalJobTitle"></p>
+    <p class="company-name-modal" id="manualModalCompanyName"></p>
+    
+    <form class="manual-application-form">
+      <div class="form-group">
+        <label for="fullName">Nama Lengkap*</label>
+        <input type="text" id="fullName" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email*</label>
+        <input type="email" id="email" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="phone">Nomor Telepon*</label>
+        <input type="tel" id="phone" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="resume">Unggah CV/Resume* (PDF, max 5MB)</label>
+        <input type="file" id="resume" accept=".pdf" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="coverLetter">Surat Lamaran (Opsional)</label>
+        <textarea id="coverLetter" rows="4"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label for="portfolio">Portfolio/Link (Opsional)</label>
+        <input type="url" id="portfolio">
+      </div>
+      
+      <button type="submit" class="submit-application-btn">Kirim Lamaran</button>
+    </form>
+  </div>
+</div>
+
+<div class="dk-share-modal" id="dkShareModal">
+  <div class="dk-modal-content-2">
+    <span class="dk-close-modal-2">&times;</span>
+    <h2 class="dk-share-title">Bagikan Lowongan</h2>
+    <div class="dk-share-link-container">
+      <input type="text" id="dkShareLinkInput" readonly value="https://diklatkerja.com/lowongan/administrator-officer" class="dk-share-input">
+      <button id="dkCopyLinkBtn" class="dk-copy-btn">Salin Tautan</button>
+    </div>
+    <div class="dk-social-share-section">
+      <p class="dk-share-label">Bagikan ke:</p>
+      <div class="dk-social-icons-wrapper">
+        <a href="#" class="dk-social-icon dk-whatsapp-icon" title="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="#" class="dk-social-icon dk-facebook-icon" title="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="dk-social-icon dk-twitter-icon" title="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="dk-social-icon dk-linkedin-icon" title="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="#" class="dk-social-icon dk-telegram-icon" title="Telegram">
+          <i class="fab fa-telegram-plane"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+  const careerLists = document.querySelectorAll('.career-list');
+  const careerContents = document.querySelectorAll('.career-content');
+  if (careerContents.length > 0) {
+    careerContents[0].classList.add('active');
+    careerLists[0].classList.add('active');
+  }
+  careerLists.forEach(list => {
+    list.addEventListener('click', function() {
+      const jobId = this.getAttribute('data-job');
+
+      careerLists.forEach(item => item.classList.remove('active'));
+      careerContents.forEach(content => content.classList.remove('active'));
+      
+      this.classList.add('active');
+      
+      const correspondingContent = document.querySelector(`.career-content[data-job="${jobId}"]`);
+      if (correspondingContent) {
+        correspondingContent.classList.add('active');
+      }
+    });
+  });
+  
+  const applicationModal = document.getElementById('applicationModal');
+  const manualApplicationModal = document.getElementById('manualApplicationModal');
+  const closeButtons = document.querySelectorAll('.close-modal');
+  const applyButtons = document.querySelectorAll('.career-content button');
+  const applyWithProfileBtn = document.getElementById('applyWithProfile');
+  const applyManuallyBtn = document.getElementById('applyManually');
+  const manualForm = document.querySelector('.manual-application-form');
+  const dkShareModal = document.getElementById('dkShareModal');
+  const dkShareButtons = document.querySelectorAll('.share-link-modal');
+  const dkCloseShareModal = document.querySelector('.dk-close-modal-2');
+  const dkCopyLinkBtn = document.getElementById('dkCopyLinkBtn');
+  const dkShareLinkInput = document.getElementById('dkShareLinkInput');
+  const dkSocialIcons = document.querySelectorAll('.dk-social-icon');
+    
+    dkShareButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const content = this.closest('.career-content');
+        const jobTitle = content.querySelector('h3').textContent;
+        
+        const shareUrl = `https://diklatkerja.com/lowongan/${encodeURIComponent(jobTitle.toLowerCase().replace(/\s+/g, '-'))}`;
+        dkShareLinkInput.value = shareUrl;
+        
+        const shareText = `Lihat lowongan ${jobTitle} di Diklatkerja: ${shareUrl}`;
+        const encodedText = encodeURIComponent(shareText);
+        
+        document.querySelector('.dk-whatsapp-icon').href = `https://wa.me/?text=${encodedText}`;
+        document.querySelector('.dk-facebook-icon').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+        document.querySelector('.dk-twitter-icon').href = `https://twitter.com/intent/tweet?text=${encodedText}`;
+        document.querySelector('.dk-linkedin-icon').href = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(jobTitle)}&summary=${encodedText}`;
+        document.querySelector('.dk-telegram-icon').href = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodedText}`;
+        
+        dkShareModal.style.display = 'block';
+      });
+    });
+    
+    dkCloseShareModal.addEventListener('click', function() {
+      dkShareModal.style.display = 'none';
+    });
+    
+    window.addEventListener('click', function(event) {
+      if (event.target === dkShareModal) {
+        dkShareModal.style.display = 'none';
+      }
+    });
+    
+    dkCopyLinkBtn.addEventListener('click', function() {
+      dkShareLinkInput.select();
+      document.execCommand('copy');
+      
+      const originalText = dkCopyLinkBtn.textContent;
+      dkCopyLinkBtn.textContent = '✓ Tersalin';
+      setTimeout(() => {
+        dkCopyLinkBtn.textContent = originalText;
+      }, 2000);
+    });
+    
+    dkSocialIcons.forEach(icon => {
+      icon.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.open(this.href, '_blank', 'noopener,noreferrer');
+      });
+    });
+    
+  applyButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const content = this.closest('.career-content');
+      const jobTitle = content.querySelector('h3').textContent;
+      const companyName = content.querySelector('.career-content-1 p').textContent;
+      
+      document.getElementById('modalJobTitle').textContent = jobTitle;
+      document.getElementById('modalCompanyName').textContent = companyName;
+      document.getElementById('manualModalJobTitle').textContent = jobTitle;
+      document.getElementById('manualModalCompanyName').textContent = companyName;
+      
+      applicationModal.style.display = 'block';
+    });
+  });
+  
+  closeButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      applicationModal.style.display = 'none';
+      manualApplicationModal.style.display = 'none';
+    });
+  });
+  
+  window.addEventListener('click', function(event) {
+    if (event.target === applicationModal) {
+      applicationModal.style.display = 'none';
+    }
+    if (event.target === manualApplicationModal) {
+      manualApplicationModal.style.display = 'none';
+    }
+  });
+  
+  applyWithProfileBtn.addEventListener('click', function() {
+        
+    alert('Anda akan melamar menggunakan profil Diklatkerja Anda');
+    applicationModal.style.display = 'none';
+  });
+  
+  applyManuallyBtn.addEventListener('click', function() {
+    applicationModal.style.display = 'none';
+    manualApplicationModal.style.display = 'block';
+  });
+  
+  manualForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    alert('Lamaran Anda telah berhasil dikirim!');
+    manualApplicationModal.style.display = 'none';
+  });
+});
+  </script>
+</body>
+</html>
+</html> 
