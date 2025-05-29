@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Vacancy Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #FF8741;
+            --primary-dark: #E67638;
+            --primary-light: #FFA368;
+            --secondary-color: #2D3748;
+            --light-gray: #F7FAFC;
+            --medium-gray: #E2E8F0;
+            --dark-gray: #718096;
+            --white: #FFFFFF;
+            --success-color: #48BB78;
+            --danger-color: #F56565;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--secondary-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+        
+        .logo {
+            height: 60px;
+            background-color: white;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        
+        .dashboard-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .search-filter-container {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .search-bar {
+            position: relative;
+            width: 300px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+        
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(255, 135, 65, 0.2);
+        }
+        
+        .search-bar i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--dark-gray);
+        }
+        
+        .filter-dropdown {
+            position: relative;
+        }
+        
+        .filter-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background-color: var(--white);
+            border: 1px solid var(--medium-gray);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .filter-toggle:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .filter-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 200px;
+            background-color: var(--white);
+            border: 1px solid var(--medium-gray);
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            display: none;
+            padding: 10px;
+        }
+        
+        .filter-options.show {
+            display: block;
+        }
+        
+        .filter-option {
+            padding: 8px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .filter-option:hover {
+            background-color: var(--light-gray);
+        }
+        
+        .filter-option.active {
+            background-color: var(--primary-light);
+            color: white;
+        }
+        
+        .create-btn {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .create-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .vacancies-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .vacancy-card {
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .vacancy-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-light);
+        }
+        
+        .vacancy-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--secondary-color);
+        }
+        
+        .vacancy-location {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--dark-gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .vacancy-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 13px;
+            color: var(--dark-gray);
+        }
+        
+        .applicants-count {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 24px;
+            height: 24px;
+            background-color: var(--primary-light);
+            color: white;
+            border-radius: 12px;
+            padding: 0 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .vacancy-dates {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--dark-gray);
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--medium-gray);
+        }
+        
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .status-active {
+            background-color: rgba(72, 187, 120, 0.1);
+            color: var(--success-color);
+        }
+        
+        .status-inactive {
+            background-color: rgba(245, 101, 101, 0.1);
+            color: var(--danger-color);
+        }
+
+        .status-pending {
+            background-color: rgba(168, 141, 32, 0.1);
+            color: var(--dark-gray);
+        }
+
+        .status-rejected {
+            background-color: rgba(0, 0, 0, 0.1);
+            color: var(--dark-gray);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            grid-column: 1 / -1;
+        }
+        
+        .empty-state i {
+            font-size: 48px;
+            color: var(--medium-gray);
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .empty-state p {
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 5px;
+        }
+        
+        .pagination-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--medium-gray);
+            border-radius: 4px;
+            background-color: var(--white);
+            cursor: pointer;
+            color: var(--secondary-color);
+        }
+        
+        .pagination-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .pagination-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-actions {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .search-filter-container {
+                width: 100%;
+            }
+            
+            .search-bar {
+                width: 100%;
+            }
+            
+            .vacancies-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .create-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Daftar Lowongan Pekerjaan</h1>
+            <img src="image/img_logo.png" alt="Logo" class="logo">
+        </div>
+        
+        <div class="dashboard-actions">
+            <div class="search-filter-container">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Cari lowongan...">
+                </div>
+                
+                <div class="filter-dropdown">
+                    <div class="filter-toggle" id="filterToggle">
+                        <span>Filter: Semua</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-options" id="filterOptions">
+                        <div class="filter-option active" data-filter="all">Semua Lowongan</div>
+                        <div class="filter-option" data-filter="active">Aktif</div>
+                        <div class="filter-option" data-filter="inactive">Tidak Aktif</div>
+                        <div class="filter-option" data-filter="pending">Pending</div>
+                        <div class="filter-option" data-filter="rejected">Ditolak</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="create-btn" onclick="window.location.href='loker_create.html'">
+                <i class="fas fa-plus"></i>
+                Buat Lowongan Baru
+            </button>
+        </div>
+        
+        <div class="vacancies-container" id="vacanciesContainer">
+            <!-- Vacancy cards will be dynamically inserted here -->
+            
+            <!-- Example Active Vacancy Card -->
+            <div class="vacancy-card" onclick="window.location.href='loker_detail.html?id=1'">
+                <span class="status-badge status-rejected">Ditolak</span>
+                <h3 class="vacancy-title">Sales Marketing</h3>
+                <div class="vacancy-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Jakarta Selatan, DKI Jakarta</span>
+                </div>
+                
+                <div class="vacancy-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-users"></i>
+                        <span>Pelamar: <span class="applicants-count">24</span></span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Full-time</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Rp5.000.000 - Rp8.000.000</span>
+                    </div>
+                </div>
+                
+                <div class="vacancy-dates">
+                    <span>Dibuat: 12 Mei 2023</span>
+                    <span>Berakhir: 12 Juni 2023</span>
+                </div>
+            </div>
+            
+            <!-- Example Inactive Vacancy Card -->
+            <div class="vacancy-card" onclick="window.location.href='loker_detail.html?id=2'">
+                <span class="status-badge status-inactive">Tidak Aktif</span>
+                <h3 class="vacancy-title">Frontend Developer</h3>
+                <div class="vacancy-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Bandung, Jawa Barat</span>
+                </div>
+                
+                <div class="vacancy-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-users"></i>
+                        <span>Pelamar: <span class="applicants-count">42</span></span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Full-time</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Rp8.000.000 - Rp12.000.000</span>
+                    </div>
+                </div>
+                
+                <div class="vacancy-dates">
+                    <span>Dibuat: 1 April 2023</span>
+                    <span>Berakhir: 1 Mei 2023</span>
+                </div>
+            </div>
+            
+            <!-- Example Active Vacancy Card -->
+            <div class="vacancy-card" onclick="window.location.href='loker_detail.html?id=3'">
+                <span class="status-badge status-active">Aktif</span>
+                <h3 class="vacancy-title">HR Manager</h3>
+                <div class="vacancy-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Surabaya, Jawa Timur</span>
+                </div>
+                
+                <div class="vacancy-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-users"></i>
+                        <span>Pelamar: <span class="applicants-count">15</span></span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Full-time</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Rp10.000.000 - Rp15.000.000</span>
+                    </div>
+                </div>
+                
+                <div class="vacancy-dates">
+                    <span>Dibuat: 5 Mei 2023</span>
+                    <span>Berakhir: 5 Juli 2023</span>
+                </div>
+            </div>
+            
+            <!-- Example Active Vacancy Card -->
+            <div class="vacancy-card" onclick="window.location.href='loker_detail.html?id=4'">
+                <span class="status-badge status-pending">Pending</span>
+                <h3 class="vacancy-title">Graphic Designer</h3>
+                <div class="vacancy-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Remote</span>
+                </div>
+                
+                <div class="vacancy-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-users"></i>
+                        <span>Pelamar: <span class="applicants-count">36</span></span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Freelance</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Rp3.000.000 - Rp5.000.000</span>
+                    </div>
+                </div>
+                
+                <div class="vacancy-dates">
+                    <span>Dibuat: 20 April 2023</span>
+                    <span>Berakhir: 20 Juni 2023</span>
+                </div>
+            </div>
+            
+            <!-- Example Inactive Vacancy Card -->
+            <div class="vacancy-card" onclick="window.location.href='loker_detail.html?id=5'">
+                <span class="status-badge status-inactive">Tidak Aktif</span>
+                <h3 class="vacancy-title">Backend Developer</h3>
+                <div class="vacancy-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Yogyakarta</span>
+                </div>
+                
+                <div class="vacancy-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-users"></i>
+                        <span>Pelamar: <span class="applicants-count">28</span></span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Full-time</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Rp7.000.000 - Rp10.000.000</span>
+                    </div>
+                </div>
+                
+                <div class="vacancy-dates">
+                    <span>Dibuat: 15 Maret 2023</span>
+                    <span>Berakhir: 15 April 2023</span>
+                </div>
+            </div>
+            
+            <!-- Example Active Vacancy Card -->
+            <div class="vacancy-card" onclick="window.location.href='loker_detail.html?id=6'">
+                <span class="status-badge status-active">Aktif</span>
+                <h3 class="vacancy-title">Customer Service</h3>
+                <div class="vacancy-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Bekasi, Jawa Barat</span>
+                </div>
+                
+                <div class="vacancy-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-users"></i>
+                        <span>Pelamar: <span class="applicants-count">19</span></span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Part-time</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Rp3.500.000 - Rp4.500.000</span>
+                    </div>
+                </div>
+                
+                <div class="vacancy-dates">
+                    <span>Dibuat: 8 Mei 2023</span>
+                    <span>Berakhir: 8 Juni 2023</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pagination">
+            <button class="pagination-btn disabled">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="pagination-btn active">1</button>
+            <button class="pagination-btn">2</button>
+            <button class="pagination-btn">3</button>
+            <button class="pagination-btn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+<script>
+    const filterToggle = document.getElementById('filterToggle');
+    const filterOptions = document.getElementById('filterOptions');
+    const filterOptionItems = document.querySelectorAll('.filter-option');
+    const vacancyCards = document.querySelectorAll('.vacancy-card');
+    
+    filterToggle.addEventListener('click', function() {
+        filterOptions.classList.toggle('show');
+    });
+    
+    filterOptionItems.forEach(option => {
+        option.addEventListener('click', function() {
+            filterOptionItems.forEach(item => item.classList.remove('active'));
+            this.classList.add('active');
+            
+            const filterText = this.textContent;
+            filterToggle.querySelector('span').textContent = `Filter: ${filterText.replace('Lowongan', '').trim()}`;
+            
+            const filterValue = this.dataset.filter;
+            filterVacancies(filterValue);
+            
+            filterOptions.classList.remove('show');
+        });
+    });
+    
+    function filterVacancies(filter) {
+        vacancyCards.forEach(card => {
+            const statusBadge = card.querySelector('.status-badge');
+            const status = statusBadge ? statusBadge.classList.contains('status-active') ? 'active' : 
+                                         statusBadge.classList.contains('status-inactive') ? 'inactive' :
+                                         statusBadge.classList.contains('status-pending') ? 'pending' :
+                                         statusBadge.classList.contains('status-rejected') ? 'rejected' : 
+                                         'unknown' : 'unknown';
+            
+            if (filter === 'all') {
+                card.style.display = 'block';
+            } else if (filter === status) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    const searchInput = document.querySelector('.search-bar input');
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const currentFilter = document.querySelector('.filter-option.active').dataset.filter;
+        
+        vacancyCards.forEach(card => {
+            const title = card.querySelector('.vacancy-title').textContent.toLowerCase();
+            const location = card.querySelector('.vacancy-location span').textContent.toLowerCase();
+            
+            const statusBadge = card.querySelector('.status-badge');
+            const status = statusBadge ? statusBadge.classList.contains('status-active') ? 'active' : 
+                                         statusBadge.classList.contains('status-inactive') ? 'inactive' :
+                                         statusBadge.classList.contains('status-pending') ? 'pending' :
+                                         statusBadge.classList.contains('status-rejected') ? 'rejected' : 
+                                         'unknown' : 'unknown';
+            
+            const shouldShowByFilter = currentFilter === 'all' || currentFilter === status;
+            
+            const matchesSearch = title.includes(searchTerm) || location.includes(searchTerm);
+            
+            if (shouldShowByFilter && matchesSearch) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+    
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.filter-dropdown')) {
+            filterOptions.classList.remove('show');
+        }
+    });
+    
+    const paginationBtns = document.querySelectorAll('.pagination-btn:not(.disabled)');
+    paginationBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (!this.classList.contains('active')) {
+                document.querySelector('.pagination-btn.active').classList.remove('active');
+                this.classList.add('active');
+            }
+        });
+    });
+
+    filterVacancies('all');
+</script>
+</body>
+</html>
