@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Job Vacancy</title>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF8741;
+            --primary-dark: #E67638;
+            --primary-light: #FFA368;
+            --secondary-color: #2D3748;
+            --light-gray: #F7FAFC;
+            --medium-gray: #E2E8F0;
+            --dark-gray: #718096;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--secondary-color);
+        }
+        hr {
+            margin:20px 0;
+            border-color:var(--light-gray);
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+        
+        .logo {
+            height: 80px;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .section-title .number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-col {
+            flex: 1;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+        
+        .required:after {
+            content: " *";
+            color: #e53e3e;
+        }
+        
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="email"]:focus,
+        input[type="date"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(255, 135, 65, 0.2);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap:70px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .radio-option input {
+            margin-right: 8px;
+        }
+        /* Style untuk radio button custom */
+        .radio-option input[type="radio"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--medium-gray);
+            border-radius: 50%;
+            margin-right: 8px;
+            position: relative;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .radio-option input[type="radio"]:checked {
+            border-color: var(--primary-color);
+        }
+
+        .radio-option input[type="radio"]:checked::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+        }
+
+        .radio-option input[type="radio"]:focus {
+            box-shadow: 0 0 0 2px rgba(255, 135, 65, 0.2);
+        }
+        .btn {
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border: none;
+            font-size: 14px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .btn-primary:disabled {
+            background-color: var(--medium-gray);
+            cursor: not-allowed;
+        }
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--medium-gray);
+            color: var(--secondary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--light-gray);
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--medium-gray);
+        }
+        
+        .info-text {
+            font-size: 13px;
+            color: var(--dark-gray);
+            margin-top: 5px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            gap: 10%;
+            margin-top: 8px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkbox-input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .checkbox-custom {
+            position: relative;
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-color: var(--white);
+            border: 2px solid var(--medium-gray);
+            border-radius: 4px;
+            margin-right: 10px;
+            transition: all 0.2s;
+        }
+        
+        .checkbox-input:checked ~ .checkbox-custom {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .checkbox-input:focus ~ .checkbox-custom {
+            box-shadow: 0 0 0 2px rgba(255, 135, 65, 0.3);
+        }
+        
+        .checkbox-custom::after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 5px;
+            top: 1px;
+            width: 3px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .checkbox-input:checked ~ .checkbox-custom::after {
+            display: block;
+        }
+        
+        .checkbox-label {
+            font-size: 14px;
+            color: var(--secondary-color);
+            cursor: pointer;
+        }
+
+        .checkbox-description {
+            font-size: 12px;
+            color: var(--dark-gray);
+            margin-top: 4px;
+            margin-left: 28px; /* Sesuaikan dengan indent checkbox */
+            line-height: 1.4;
+        }
+
+        .searchable-dropdown {
+            position: relative;
+        }
+        
+        .dropdown-search {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 4px;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .dropdown-search:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(255, 135, 65, 0.2);
+        }
+        
+        .dropdown-options {
+            position: absolute;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid var(--medium-gray);
+            border-radius: 4px;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .dropdown-option {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+        
+        .dropdown-option:hover {
+            background-color: var(--light-gray);
+        }
+        /* KBJI Modal Styles */
+        .kbji-category {
+            margin-bottom: 10px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .kbji-category-header {
+            padding: 12px 15px;
+            background-color: var(--light-gray);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .kbji-category-header:hover {
+            background-color: #e2e8f0;
+        }
+
+        .kbji-toggle {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .kbji-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .kbji-table tr {
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .kbji-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .kbji-table td {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        .kbji-table td:first-child {
+            width: 100px;
+            font-family: monospace;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .kbji-table tr:hover {
+            background-color: var(--light-gray);
+        }
+        
+        /* Step navigation styles */
+        .step-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .step-nav:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--medium-gray);
+            z-index: 1;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--medium-gray);
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .step.active .step-number {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .step.completed .step-number {
+            background-color: var(--primary-light);
+            color: white;
+        }
+        
+        .step-label {
+            font-size: 14px;
+            color: var(--dark-gray);
+            text-align: center;
+        }
+        
+        .step.active .step-label {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        /* Form step styles */
+        .form-step {
+            display: none;
+        }
+        
+        .form-step.active {
+            display: block;
+        }
+        
+        /* Terms and conditions box */
+        .terms-box {
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            padding: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        
+        .terms-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .terms-content {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--dark-gray);
+        }
+        
+        .terms-content p {
+            margin-bottom: 15px;
+        }
+        /* Tag Input Styles */
+        .tag-input-container {
+            position: relative;
+            border: 1px solid var(--medium-gray);
+            border-radius: 4px;
+            padding: 8px 12px;
+            min-height: 44px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tag-input {
+            border: none;
+            outline: none;
+            flex-grow: 1;
+            min-width: 150px;
+            padding: 5px;
+        }
+
+        .tag {
+            background-color: var(--primary-light);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 13px;
+        }
+
+        .tag-remove {
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+        }
+
+        .tag-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid var(--medium-gray);
+            border-radius: 4px;
+            z-index: 100;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .tag-option {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .tag-option:hover {
+            background-color: var(--light-gray);
+        }
+
+        .clear-all {
+            position: absolute;
+            right: 20px;
+            top: 15%;
+            font-size: 30px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--dark-gray);
+            display: none;
+        }
+
+        .tag-input-container:focus-within {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(255, 135, 65, 0.2);
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 25px;
+            border-radius: 8px;
+            width: 400px;
+            max-width: 90%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            color: var(--primary-color);
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            color: var(--dark-gray);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            margin-bottom: 25px;
+            color: var(--secondary-color);
+            line-height: 1.5;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        
+        .modal-icon.large {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 20px;
+        }
+
+        .success-icon {
+            color: #4CAF50;
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+
+        .modal-centered {
+            text-align: center;
+        }
+
+        .modal-centered .modal-header,
+        .modal-centered .modal-footer {
+            justify-content: center;
+            border: none;
+        }
+
+        .modal-centered .modal-title {
+            font-size: 20px;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        .modal-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .modal-title-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        /* For the confirmation modal, let's use a different icon */
+        #dateConfirmationModal .modal-icon {
+            color: var(--primary-color);
+        }
+
+        #dateConfirmationModal .modal-icon path,
+        #dateConfirmationModal .modal-icon circle {
+            fill: var(--primary-color);
+        }
+
+        /* Animation for the icon */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .modal-icon {
+            animation: pulse 0.5s ease-in-out;
+        }
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .step-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .step-nav:before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Buat Lowongan Pekerjaan</h1>
+            <img src="image/img_logo.png" alt="Logo" class="logo">
+        </div>
+        
+        <!-- Step Navigation -->
+        <div class="step-nav">
+            <div class="step active" data-step="1">
+                <div class="step-number">1</div>
+                <div class="step-label">Informasi Pekerjaan</div>
+            </div>
+            <div class="step" data-step="2">
+                <div class="step-number">2</div>
+                <div class="step-label">Persyaratan Umum</div>
+            </div>
+            <div class="step" data-step="3">
+                <div class="step-number">3</div>
+                <div class="step-label">Kontak Publikasi</div>
+            </div>
+            <div class="step" data-step="4">
+                <div class="step-number">4</div>
+                <div class="step-label">Syarat & Ketentuan</div>
+            </div>
+        </div>
+        
+        <form id="jobForm">
+            <!-- Step 1: Informasi Pekerjaan -->
+            <div class="form-step active" id="step-1">
+                <div class="form-section">
+                    <div class="section-title">
+                        <span class="number">1</span>
+                        <span>Informasi Pekerjaan</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="job-title" class="required">Judul Pekerjaan</label>
+                        <input type="text" id="job-title" placeholder="Contoh: Sales Marketing" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="job-type" class="required">Jenis Pekerjaan</label>
+                                <select id="job-type" required>
+                                    <option value="" disabled hidden selected>Pilih Jenis</option>
+                                    <option value="fulltime">Full-time</option>
+                                    <option value="parttime">Part-time</option>
+                                    <option value="contract">Kontrak</option>
+                                    <option value="intern">Internship</option>
+                                    <option value="freelance">Freelance</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="jabatan-kbji" class="required">Jabatan sesuai KBJI</label>
+                                <input type="text" id="jabatan-kbji" placeholder="Klik untuk memilih jabatan" readonly onclick="showKBJIModal()">
+                                <input type="hidden" id="kbji-code">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="job-description" class="required">Deskripsi Pekerjaan</label>
+                        <div id="job-description-editor" style="height: 200px;"></div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="section-title">
+                        <span class="number">2</span>
+                        <span>Lokasi</span>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group searchable-dropdown">
+                                <label for="province" class="required">Provinsi</label>
+                                <input type="text" id="province-search" class="dropdown-search" placeholder="Cari provinsi...">
+                                <div id="province-options" class="dropdown-options"></div>
+                                <select id="province" required style="display: none;">
+                                    <option value="">Pilih Provinsi</option>
+                                    <option value="aceh">Aceh</option>
+                                    <option value="sumut">Sumatera Utara</option>
+                                    <option value="sumbar">Sumatera Barat</option>
+                                    <option value="riau">Riau</option>
+                                    <option value="kepulauan-riau">Kepulauan Riau</option>
+                                    <option value="jambi">Jambi</option>
+                                    <option value="sumsel">Sumatera Selatan</option>
+                                    <option value="babel">Kepulauan Bangka Belitung</option>
+                                    <option value="bengkulu">Bengkulu</option>
+                                    <option value="lampung">Lampung</option>
+                                    <option value="dki">DKI Jakarta</option>
+                                    <option value="jabar">Jawa Barat</option>
+                                    <option value="banten">Banten</option>
+                                    <option value="jateng">Jawa Tengah</option>
+                                    <option value="yogyakarta">DI Yogyakarta</option>
+                                    <option value="jatim">Jawa Timur</option>
+                                    <option value="kalbar">Kalimantan Barat</option>
+                                    <option value="kalteng">Kalimantan Tengah</option>
+                                    <option value="kalsel">Kalimantan Selatan</option>
+                                    <option value="kaltim">Kalimantan Timur</option>
+                                    <option value="kalut">Kalimantan Utara</option>
+                                    <option value="bali">Bali</option>
+                                    <option value="ntb">Nusa Tenggara Barat</option>
+                                    <option value="ntt">Nusa Tenggara Timur</option>
+                                    <option value="sulut">Sulawesi Utara</option>
+                                    <option value="sulteng">Sulawesi Tengah</option>
+                                    <option value="sulsel">Sulawesi Selatan</option>
+                                    <option value="sultra">Sulawesi Tenggara</option>
+                                    <option value="gorontalo">Gorontalo</option>
+                                    <option value="sulbar">Sulawesi Barat</option>
+                                    <option value="maluku">Maluku</option>
+                                    <option value="malut">Maluku Utara</option>
+                                    <option value="papua">Papua</option>
+                                    <option value="papua-barat">Papua Barat</option>
+                                    <option value="papua-tengah">Papua Tengah</option>
+                                    <option value="papua-pegunungan">Papua Pegunungan</option>
+                                    <option value="papua-selatan">Papua Selatan</option>
+                                    <option value="papua-barat-daya">Papua Barat Daya</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="city" class="required">Kota/Kabupaten</label>
+                                <select id="city" required disabled>
+                                    <option value="" disabled hidden selected>Pilih Kota/Kabupaten</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="kecamatan">Kecamatan</label>
+                                <select id="kecamatan">
+                                    <option value="" disabled hidden selected>Pilih Kecamatan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="kelurahan">Kelurahan</label>
+                                <select id="kelurahan">
+                                    <option value="" disabled hidden selected>Pilih Kelurahan</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="section-title">
+                        <span class="number">3</span>
+                        <span>Kualifikasi</span>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="experience" class="required">Pengalaman Kerja</label>
+                                <select id="experience" required>
+                                    <option value="" disabled hidden selected>Pilih Pengalaman</option>
+                                    <option value="fresh">Fresh Graduate</option>
+                                    <option value="1-3">1-3 Tahun</option>
+                                    <option value="3-5">3-5 Tahun</option>
+                                    <option value="5-10">5-10 Tahun</option>
+                                    <option value="10+">Lebih dari 10 Tahun</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="gender" class="required">Jenis Kelamin</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" class="checkbox-input" name="gender" value="male" checked>
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-label">Laki-laki</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" class="checkbox-input" name="gender" value="female" checked>
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-label">Perempuan</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <label for="kondisi-fisik" class="required">Kondisi Fisik</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" class="checkbox-input" name="kondisi-fisik" value="disabilitas" checked>
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-label">Disabilitas</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" class="checkbox-input" name="kondisi-fisik" value="non-disabilitas" checked>
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-label">Non Disabilitas</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label>Pilih jenis yang <b>tidak diperbolehkan</b> untuk melamar</label>
+                                <div class="tag-input-container" id="disability-container">
+                                    <div class="tag-options" id="disability-options">
+                                        <div class="tag-option" data-value="Tuna Daksa">Tuna Daksa</div>
+                                        <div class="tag-option" data-value="Tuna Grahita">Tuna Grahita</div>
+                                        <div class="tag-option" data-value="Tuna Wicara">Tuna Wicara</div>
+                                        <div class="tag-option" data-value="Tuna Netra">Tuna Netra</div>
+                                        <div class="tag-option" data-value="Tuna Rungu">Tuna Rungu</div>
+                                        <div class="tag-option" data-value="Tuna Ganda">Tuna Ganda</div>
+                                    </div>
+                                    <input type="text" class="tag-input" id="disability-input" placeholder="Ketik untuk mencari...">
+                                    <span class="clear-all" id="clear-all-disabilities">×</span>
+                                    <input type="hidden" id="selected-disabilities" name="selected-disabilities">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="section-title">
+                        <span class="number">4</span>
+                        <span>Rentang Gaji</span>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="salary-min" class="required">Gaji Minimum (Rp)</label>
+                                <input type="text" id="salary-min" placeholder="Contoh: 5000000" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="salary-max" class="required">Gaji Maksimum (Rp)</label>
+                                <input type="text" id="salary-max" placeholder="Contoh: 8000000" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <label class="checkbox-item">
+                        <input type="checkbox" class="checkbox-input" name="tampilkan-gaji" value="tampilkan-gaji" checked>
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-label">Tampilkan Gaji</span>
+                    </label>
+                    <div class="checkbox-description">Tampilkan gaji untuk menarik lebih banyak pelamar pada postingan Anda</div>
+                    <hr/>
+
+                    <label class="checkbox-item">
+                        <input type="checkbox" class="checkbox-input" name="dapat-saham" value="dapat-saham">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-label">Dapat Saham / Ekuitas</span>
+                    </label>
+                    <div class="checkbox-description">Apakah posisi ini menyediakan opsi saham atau bentuk kepemilikan ekuitas bagi kandidat?</div>
+                    <br/>
+                    <label class="checkbox-item">
+                        <input type="checkbox" class="checkbox-input" name="terbatas" value="terbatas">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-label">Terbatas</span>
+                    </label>
+                    <div class="checkbox-description">Loker ini tidak akan ditampilkan secara publik. Hanya pihak tertentu yang dapat mengakses informasi lowongan ini.</div>
+                    <hr/>
+                </div>
+
+                <div class="form-section">
+                    <div class="section-title">
+                        <span class="number">5</span>
+                        <span>Informasi Tambahan</span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="start-date" class="required">Tanggal Tayang Loker</label>
+                                <input type="date" id="start-date" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="expiry-date" class="required">Tanggal Berakhir</label>
+                                <input type="date" id="expiry-date" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="remote-work" class="required">Tipe Pekerjaan</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="remote-yes" name="remote-work" value="yes" required>
+                                        <label for="remote-yes">Remote</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="remote-no" name="remote-work" value="no">
+                                        <label for="remote-no">On-site</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="remote-hibrid" name="remote-work" value="hibrid">
+                                        <label for="remote-hibrid">Hybrid</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                            <label for="openings" class="required">Jumlah Pelamar yang Dibutuhkan</label>
+                            <input type="number" id="openings" placeholder="0" min="1" required>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" id="cancel-btn">Batal</button>
+                    <button type="button" class="btn btn-primary" id="next-btn-1">Selanjutnya</button>
+                </div>
+            </div>
+            
+            <!-- Step 2: Persyaratan Umum -->
+            <div class="form-step" id="step-2">
+                <div class="form-section">
+                    <div class="section-title">
+                        <span class="number">1</span>
+                        <span>Persyaratan Pendidikan</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="education" class="required">Pendidikan Minimal</label>
+                        <select id="education" required>
+                            <option value="" disabled hidden selected>Pilih Pendidikan</option>
+                            <option value="sma">SMK</option>
+                            <option value="d1">Diploma 1</option>
+                            <option value="d2">Diploma 2</option>
+                            <option value="d3">Diploma 3</option>
+                            <option value="s1">Sarjana (S1)</option>
+                            <option value="s2">Magister (S2)</option>
+                            <option value="s3">Doktor (S3)</option>
+                            <option value="profesi">Profesi</option>
+                            <option value="sd">SD atau Sederajat</option>
+                            <option value="smp">SMP atau Sederajat</option>
+                            <option value="sma">SMA atau Sederajat</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="major">Jurusan yang Dibutuhkan (Opsional)</label>
+                        <input type="text" id="major" placeholder="Contoh: Teknik Informatika, Manajemen">
+                        <p class="info-text">Kosongkan jika tidak ada persyaratan khusus</p>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="section-title">
+                        <span class="number">2</span>
+                        <span>Persyaratan Umum</span>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="status-marital" class="required">Status Pernikahan</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" class="checkbox-input" name="single" value="male">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-label">Single / Belum Menikah</span>
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" class="checkbox-input" name="married" value="female">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-label">Sudah Menikah</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <label for="age-min">Rentang Usia</label>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <input type="number" id="age-min" placeholder="Minimal Usia">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <input type="number" id="age-max" placeholder="Maksimal Usia">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <div class="section-title">
+                        <span class="number">3</span>
+                        <span>Persyaratan Khusus</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="language-skills">Keahlian Bahasa</label>
+                        <div class="checkbox-group" style="flex-wrap: wrap; gap: 15px;">
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="checkbox-input" name="language" value="english">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-label">Bahasa Inggris</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="checkbox-input" name="language" value="mandarin">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-label">Bahasa Mandarin</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="checkbox-input" name="language" value="japanese">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-label">Bahasa Jepang</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="checkbox-input" name="language" value="arabic">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-label">Bahasa Arab</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" class="checkbox-input" name="language" value="other">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-label">Lainnya</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="other-requirements">Persyaratan Khusus Lainnya (Opsional)</label>
+                        <div id="other-requirements-editor" style="height: 200px;"></div>
+                        <input type="hidden" id="other-requirements" name="other-requirements">
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" id="back-btn-2">Kembali</button>
+                    <button type="button" class="btn btn-primary" id="next-btn-2">Selanjutnya</button>
+                </div>
+            </div>
+            
+            <!-- Step 3: Kontak Publikasi -->
+            <div class="form-step" id="step-3">
+                <div class="form-section">
+                    <div class="section-title">
+                        <span class="number">1</span>
+                        <span>Kontak untuk Publikasi</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-email" class="required">Email Penerima Lamaran</label>
+                        <input type="email" id="contact-email" placeholder="email@perusahaan.com" required>
+                        <p class="info-text">Setiap lamaran yang masuk akan dikirimkan ke email ini</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-phone">Nomor Telepon (Opsional)</label>
+                        <input type="text" id="contact-phone" placeholder="081234567890">
+                        <p class="info-text">Nomor yang dapat dihubungi oleh pelamar</p>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" id="back-btn-3">Kembali</button>
+                    <button type="button" class="btn btn-primary" id="next-btn-3">Selanjutnya</button>
+                </div>
+            </div>
+            
+            <!-- Step 4: Syarat & Ketentuan -->
+            <div class="form-step" id="step-4">
+                <div class="form-section">
+                    <div class="section-title">
+                        <span class="number">1</span>
+                        <span>Syarat & Ketentuan</span>
+                    </div>
+                    
+                    <div class="terms-box">
+                        <div class="terms-title">Ketentuan Penggunaan Layanan</div>
+                        <div class="terms-content">
+                            <p>Dengan melanjutkan, Anda menyetujui semua syarat dan ketentuan berikut:</p>
+                            
+                            <p><strong>1. Keakuratan Informasi</strong><br>
+                            Anda bertanggung jawab untuk memastikan bahwa semua informasi yang diberikan dalam formulir ini adalah akurat, lengkap, dan benar. Kami berhak untuk menolak atau menghapus lowongan pekerjaan yang mengandung informasi yang tidak akurat atau menyesatkan.</p>
+                            
+                            <p><strong>2. Kebijakan Non-Diskriminasi</strong><br>
+                            Lowongan pekerjaan harus mematuhi semua hukum dan peraturan yang berlaku mengenai kesempatan kerja yang setara. Diskriminasi berdasarkan ras, warna kulit, agama, jenis kelamin, orientasi seksual, identitas gender, asal kebangsaan, usia, status perkawinan, kecacatan, atau status veteran tidak diperbolehkan.</p>
+                            
+                            <p><strong>3. Tanggung Jawab Pengguna</strong><br>
+                            Anda bertanggung jawab penuh atas semua konten yang diposting dan semua interaksi yang terjadi sebagai hasil dari posting lowongan pekerjaan ini. Kami tidak bertanggung jawab atas setiap kerugian atau klaim yang timbul dari lowongan pekerjaan yang Anda buat.</p>
+                            
+                            <p><strong>4. Pembaruan Lowongan</strong><br>
+                            Anda setuju untuk memperbarui atau menghapus lowongan pekerjaan ketika posisi telah terisi atau tidak lagi tersedia. Lowongan pekerjaan yang tidak aktif selama lebih dari 60 hari dapat dihapus secara otomatis oleh sistem.</p>
+                            
+                            <p><strong>5. Privasi Data</strong><br>
+                            Semua data pelamar yang dikumpulkan melalui lowongan ini akan diperlakukan sesuai dengan kebijakan privasi kami. Anda setuju untuk tidak menggunakan informasi pelamar untuk tujuan selain evaluasi kandidat untuk posisi ini.</p>
+                         </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" class="checkbox-input" id="agree-terms" required>
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-label">Saya telah membaca dan menyetujui semua syarat dan ketentuan di atas</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" id="back-btn-4">Kembali</button>
+                    <button type="submit" class="btn btn-primary" id="submit-btn">Simpan Lowongan</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <!-- KBJI Modal -->
+    <div id="kbjiModal" class="modal">
+        <div class="modal-content" style="width: 600px; max-height: 80vh; display: flex; flex-direction: column;">
+            <div class="modal-header">
+                <div class="modal-title-wrapper">
+                    <div class="modal-title">Pilih Jabatan sesuai KBJI</div>
+                </div>
+                <span class="modal-close" onclick="closeKBJIModal()">&times;</span>
+            </div>
+            <div class="modal-body" style="flex: 1; overflow: hidden; display: flex; flex-direction: column;">
+                <input type="text" id="kbjiSearch" class="dropdown-search" placeholder="Cari jabatan..." style="margin-bottom: 15px;">
+                <div style="flex: 1; overflow-y: auto;">
+                    <div class="kbji-category">
+                        <div class="kbji-category-header" onclick="toggleCategory(this)">
+                            <span>Pengajar Teknologi Informasi</span>
+                            <span class="kbji-toggle">-</span>
+                        </div>
+                        <div class="kbji-category-content">
+                            <table class="kbji-table">
+                                <tr onclick="selectKBJI('2356.99', 'Pengajar Teknologi Informasi lainnya')">
+                                    <td>2356.99</td>
+                                    <td>Pengajar Teknologi Informasi lainnya</td>
+                                </tr>
+                                <tr onclick="selectKBJI('2356.02', 'Pengajar Software')">
+                                    <td>2356.02</td>
+                                    <td>Pengajar Software</td>
+                                </tr>
+                                <tr onclick="selectKBJI('2356.01', 'Pengajar Komputer')">
+                                    <td>2356.01</td>
+                                    <td>Pengajar Komputer</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="kbji-category">
+                        <div class="kbji-category-header" onclick="toggleCategory(this)">
+                            <span>Guru Kursus Musik</span>
+                            <span class="kbji-toggle">-</span>
+                        </div>
+                        <div class="kbji-category-content">
+                            <table class="kbji-table">
+                                <tr onclick="selectKBJI('2354.99', 'Guru kursus musik lainnya')">
+                                    <td>2354.99</td>
+                                    <td>Guru kursus musik lainnya</td>
+                                </tr>
+                                <tr onclick="selectKBJI('2354.04', 'Guru Biola')">
+                                    <td>2354.04</td>
+                                    <td>Guru Biola</td>
+                                </tr>
+                                <tr onclick="selectKBJI('2354.03', 'Guru Nyanyi')">
+                                    <td>2354.03</td>
+                                    <td>Guru Nyanyi</td>
+                                </tr>
+                                <tr onclick="selectKBJI('2354.02', 'Guru Piano')">
+                                    <td>2354.02</td>
+                                    <td>Guru Piano</td>
+                                </tr>
+                                <tr onclick="selectKBJI('2354.01', 'Guru Gitar')">
+                                    <td>2354.01</td>
+                                    <td>Guru Gitar</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="kbji-category">
+                        <div class="kbji-category-header" onclick="toggleCategory(this)">
+                            <span>Guru Kursus Bahasa</span>
+                            <span class="kbji-toggle">-</span>
+                        </div>
+                        <div class="kbji-category-content">
+                            <table class="kbji-table">
+                                <tr onclick="selectKBJI('2354.99', 'Guru Kursus Bahasa Lainnya')">
+                                    <td>2354.99</td>
+                                    <td>Guru Kursus Bahasa Lainnya</td>
+                                </tr>
+                                <tr onclick="selectKBJI('2353.04', 'Guru Bahasa Asing')">
+                                    <td>2353.04</td>
+                                    <td>Guru Bahasa Asing</td>
+                                </tr>
+                                <tr onclick="selectKBJI('2354.03', 'Guru Bahasa Praktek')">
+                                    <td>2354.03</td>
+                                    <td>Guru Bahasa Praktek</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="kbji-category">
+                        <div class="kbji-category-header" onclick="toggleCategory(this)">
+                            <span>Guru Kursus Seni</span>
+                            <span class="kbji-toggle">-</span>
+                        </div>
+                        <div class="kbji-category-content">
+                            <table class="kbji-table">
+                                <tr onclick="selectKBJI('2355.99', 'Guru Kursus seni lainnya')">
+                                    <td>2355.99</td>
+                                    <td>Guru Kursus seni lainnya</td>
+                                </tr>
+                                <tr onclick="selectKBJI('2355.04', 'Guru pahat/ukir')">
+                                    <td>2355.04</td>
+                                    <td>Guru pahat/ukir</td>
+                                </tr>
+                                <tr onclick="selectKBJI('2355.03', 'Guru lukis')">
+                                    <td>2355.03</td>
+                                    <td>Guru lukis</td>
+                                </tr>
+                                <tr onclick="selectKBJI('2355.02', 'Guru teater')">
+                                    <td>2355.02</td>
+                                    <td>Guru teater</td>
+                                </tr>
+                                <tr onclick="selectKBJI('2355.01', 'Guru tari')">
+                                    <td>2355.01</td>
+                                    <td>Guru tari</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="kbji-category">
+                        <div class="kbji-category-header" onclick="toggleCategory(this)">
+                            <span>Profesional bidang pendidikan lainnya YTDL</span>
+                            <span class="kbji-toggle">-</span>
+                        </div>
+                        <div class="kbji-category-content">
+                            <table class="kbji-table">
+                                <tr onclick="selectKBJI('2359.99', 'Profesional bidang pendidikan lainnya YTDL')">
+                                    <td>2359.99</td>
+                                    <td>Profesional bidang pendidikan lainnya YTDL</td>
+                                </tr>
+                                <tr onclick="selectKBJI('2359.03', 'Konselor sekolah')">
+                                    <td>2359.03</td>
+                                    <td>Konselor sekolah</td>
+                                </tr>
+                                <tr onclick="selectKBJI('2359.02', 'Pelatih matematika')">
+                                    <td>2359.02</td>
+                                    <td>Pelatih matematika</td>
+                                </tr>
+                                <tr onclick="selectKBJI('2359.01', 'Tutor (pendidikan Khusus)')">
+                                    <td>2359.01</td>
+                                    <td>Tutor (pendidikan Khusus)</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeKBJIModal()">Batal</button>
+            </div>
+        </div>
+    </div>
+
+     <!-- Validation Error Modal -->
+     <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <!-- Update your modal headers to include the icon -->
+            <div class="modal-header">
+                <div class="modal-title-wrapper">
+                    <svg class="modal-icon" viewBox="0 0 24 24">
+                        <path fill="#FF8741" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                        <path fill="#FF8741" d="M12 7c-.55 0-1 .45-1 1v5c0 .55.45 1 1 1s1-.45 1-1V8c0-.55-.45-1-1-1z"/>
+                        <circle fill="#FF8741" cx="12" cy="16" r="1"/>
+                    </svg>
+                    <div class="modal-title">Perhatian</div>
+                </div>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body" id="errorMessage">
+                <!-- Error message will be inserted here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="confirmError">Mengerti</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 1 Confirmation Modal -->
+    <div id="dateConfirmationModal" class="modal">
+        <div class="modal-content">
+           <!-- Update your confirmation modal header -->
+            <div class="modal-header">
+                <div class="modal-title-wrapper">
+                    <svg class="modal-icon" viewBox="0 0 24 24">
+                        <path fill="#FF8741" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                        <path fill="#FF8741" d="M16.59 7.58L10 14.17l-2.59-2.58L6 13l4 4 8-8z"/>
+                    </svg>
+                    <div class="modal-title">Periksa Kembali dan Konfirmasi Isi Data Pekerjaan</div>
+                </div>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Pastikan informasi lowongan sudah benar! Anda memilih tanggal tayang dari <strong id="displayStartDate"></strong> hingga <strong id="displayEndDate"></strong>.</p>
+                <p> Apakah Anda yakin untuk melanjutkan ke tahapan selanjutnya?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelConfirm">Kembali</button>
+                <button class="btn btn-primary" id="confirmDates">Lanjutkan</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cancel Confirmation Modal -->
+    <div id="cancelConfirmationModal" class="modal">
+        <div class="modal-content" style="width: 450px;">
+            <div class="modal-header">
+                <div class="modal-title-wrapper">
+                    <svg class="modal-icon" viewBox="0 0 24 24" style="width: 32px; height: 32px;">
+                        <path fill="#FF8741" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                        <path fill="#FF8741" d="M16.59 7.58L10 14.17l-2.59-2.58L6 13l4 4 8-8z"/>
+                    </svg>
+                    <div class="modal-title">Konfirmasi Pembatalan</div>
+                </div>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 15px; font-size: 15px;">
+                    <strong>Apakah Anda yakin ingin membatalkan pembuatan lowongan?</strong>
+                </p>
+                <p style="margin-bottom: 10px; font-size: 14px; color: var(--dark-gray);">
+                    Semua data yang sudah Anda masukkan akan hilang dan tidak dapat dikembalikan.
+                </p>
+                <p style="font-size: 14px; color: var(--dark-gray);">
+                    Silahkan simpan sebagai draft jika Anda ingin melanjutkan nanti.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="continueEditing">Lanjutkan Edit</button>
+                <button class="btn btn-primary" id="confirmCancel">Ya, Batalkan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit Success Modal -->
+    <div id="submitSuccessModal" class="modal">
+        <div class="modal-content" style="width: 500px; text-align: center;">
+            <div class="modal-header" style="justify-content: center; border-bottom: none;">
+                <svg class="modal-icon" viewBox="0 0 24 24" style="width: 48px; height: 48px; margin-bottom: 15px;">
+                    <circle fill="#4CAF50" cx="12" cy="12" r="10"/>
+                    <path fill="#FFFFFF" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <h3 style="color: #4CAF50; margin-bottom: 15px;">Lowongan Berhasil Dipublikasi!</h3>
+                <p style="margin-bottom: 10px; font-size: 15px;">
+                    Lowongan pekerjaan Anda sekarang sudah aktif dan dapat dilihat oleh pencari kerja.
+                </p>
+                <p style="margin-bottom: 5px; font-size: 14px; color: var(--dark-gray);">
+                    Anda akan menerima notifikasi ketika ada pelamar yang mendaftar.
+                </p>
+                <p style="font-size: 14px; color: var(--dark-gray);">
+                    Jangan lupa untuk memeriksa email Anda secara berkala.
+                </p>
+            </div>
+            <div class="modal-footer" style="justify-content: center; border-top: none;">
+                <button class="btn btn-primary" id="backToDashboard" style="padding: 10px 30px;">Kembali ke Dashboard</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        function showKBJIModal() {
+            document.getElementById('kbjiModal').style.display = 'block';
+        }
+        function closeKBJIModal() {
+            document.getElementById('kbjiModal').style.display = 'none';
+        }
+        function toggleCategory(header) {
+            const content = header.nextElementSibling;
+            const toggle = header.querySelector('.kbji-toggle');            
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                toggle.textContent = '-';
+            } else {
+                toggle.textContent = '+';
+                content.style.display = 'none';
+            }
+        }
+        function selectKBJI(code, name) {
+            document.getElementById('jabatan-kbji').value = name;
+            document.getElementById('kbji-code').value = code;
+            closeKBJIModal();
+        }        
+        document.getElementById('kbjiSearch').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const categories = document.querySelectorAll('.kbji-category');            
+            categories.forEach(category => {
+                const header = category.querySelector('.kbji-category-header');
+                const content = category.querySelector('.kbji-category-content');
+                const rows = content.querySelectorAll('tr');
+                let hasMatch = false;
+                
+                rows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        row.style.display = '';
+                        hasMatch = true;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+                
+                if (hasMatch) {
+                    category.style.display = '';
+                    
+                    content.style.display = 'block';
+                    header.querySelector('.kbji-toggle').textContent = '-';
+                } else {
+                    category.style.display = 'none';
+                }
+            });
+        }); 
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('disability-container');
+            const input = document.getElementById('disability-input');
+            const options = document.getElementById('disability-options');
+            const clearAll = document.getElementById('clear-all-disabilities');
+            const hiddenInput = document.getElementById('selected-disabilities');
+            
+            let selectedDisabilities = [];
+             
+            input.addEventListener('focus', function() {
+                options.style.display = 'block';
+            });
+             
+            document.addEventListener('click', function(e) {
+                if (!container.contains(e.target)) {
+                    options.style.display = 'none';
+                }
+            });
+             
+            input.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const allOptions = options.querySelectorAll('.tag-option');
+                
+                allOptions.forEach(option => {
+                    const text = option.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        option.style.display = 'block';
+                    } else {
+                        option.style.display = 'none';
+                    }
+                });
+            }); 
+
+            options.addEventListener('click', function(e) {
+                if (e.target.classList.contains('tag-option')) {
+                    const value = e.target.getAttribute('data-value');
+                    
+                    if (!selectedDisabilities.includes(value)) {
+                        selectedDisabilities.push(value);
+                        updateTags();
+                        input.value = '';
+                        options.style.display = 'none';
+                        input.focus();
+                    }
+                }
+            });
+            
+            container.addEventListener('click', function(e) {
+                if (e.target.classList.contains('tag-remove')) {
+                    const tag = e.target.closest('.tag');
+                    const value = tag.getAttribute('data-value');
+                    
+                    selectedDisabilities = selectedDisabilities.filter(item => item !== value);
+                    updateTags();
+                }
+            });
+            
+            clearAll.addEventListener('click', function() {
+                selectedDisabilities = [];
+                updateTags();
+            });
+        
+            function updateTags() {                
+                const existingTags = container.querySelectorAll('.tag');
+                existingTags.forEach(tag => tag.remove())
+                selectedDisabilities.forEach(disability => {
+                    const tag = document.createElement('div');
+                    tag.className = 'tag';
+                    tag.setAttribute('data-value', disability);
+                    tag.innerHTML = `
+                        ${disability}
+                        <span class="tag-remove">×</span>
+                    `;
+                    container.insertBefore(tag, input);
+                });
+                hiddenInput.value = JSON.stringify(selectedDisabilities);
+                clearAll.style.display = selectedDisabilities.length > 0 ? 'block' : 'none';
+            }
+            
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && this.value === '' && selectedDisabilities.length > 0) {
+                    selectedDisabilities.pop();
+                    updateTags();
+                }
+            });
+        });
+        
+        const cityData = {
+            aceh: ["Banda Aceh", "Sabang", "Lhokseumawe", "Langsa", "Subulussalam"],
+            sumut: ["Medan", "Binjai", "Pematang Siantar", "Tebing Tinggi", "Tanjung Balai"],
+            sumbar: ["Padang", "Bukittinggi", "Padang Panjang", "Solok", "Payakumbuh"],
+            riau: ["Pekanbaru", "Dumai", "Siak", "Bengkalis", "Rokan Hilir"],
+            "kepulauan-riau": ["Batam", "Tanjung Pinang", "Bintan", "Karimun", "Lingga"],
+            jambi: ["Jambi", "Sungai Penuh", "Muaro Jambi", "Batanghari", "Merangin"],
+            sumsel: ["Palembang", "Prabumulih", "Pageralam", "Lubuklinggau", "Musi Banyuasin"],
+            babel: ["Pangkal Pinang", "Belitung", "Belitung Timur", "Bangka", "Bangka Barat"],
+            bengkulu: ["Bengkulu", "Rejang Lebong", "Kaur", "Seluma", "Muko Muko"],
+            lampung: ["Bandar Lampung", "Metro", "Lampung Selatan", "Lampung Tengah", "Lampung Utara"],
+            dki: ["Jakarta Pusat", "Jakarta Selatan", "Jakarta Timur", "Jakarta Barat", "Jakarta Utara"],
+            jabar: ["Bandung", "Bogor", "Bekasi", "Depok", "Cimahi"],
+            banten: ["Serang", "Tangerang", "Cilegon", "Tangerang Selatan", "Lebak"],
+            jateng: ["Semarang", "Surakarta", "Salatiga", "Pekalongan", "Tegal"],
+            yogyakarta: ["Yogyakarta", "Bantul", "Sleman", "Gunung Kidul", "Kulon Progo"],
+            jatim: ["Surabaya", "Malang", "Kediri", "Madiun", "Batu"],
+            kalbar: ["Pontianak", "Singkawang", "Sambas", "Bengkayang", "Landak"],
+            kalteng: ["Palangka Raya", "Kotawaringin Barat", "Kotawaringin Timur", "Kapuas", "Barito Selatan"],
+            kalsel: ["Banjarmasin", "Banjarbaru", "Tanah Laut", "Barito Kuala", "Tapin"],
+            kaltim: ["Samarinda", "Balikpapan", "Bontang", "Kutai Kartanegara", "Kutai Timur"],
+            kalut: ["Tarakan", "Bulungan", "Nunukan", "Tana Tidung", "Malinau"],
+            bali: ["Denpasar", "Badung", "Gianyar", "Bangli", "Klungkung"],
+            ntb: ["Mataram", "Bima", "Sumbawa", "Dompu", "Lombok Barat"],
+            ntt: ["Kupang", "Ende", "Sikka", "Ngada", "Manggarai"],
+            sulut: ["Manado", "Bitung", "Tomohon", "Minahasa", "Bolaang Mongondow"],
+            sulteng: ["Palu", "Donggala", "Toli-Toli", "Buol", "Parigi Moutong"],
+            sulsel: ["Makassar", "Parepare", "Palopo", "Gowa", "Bone"],
+            sultra: ["Kendari", "Bau-Bau", "Kolaka", "Konawe", "Muna"],
+            gorontalo: ["Gorontalo", "Bone Bolango", "Gorontalo Utara", "Pohuwato", "Boalemo"],
+            sulbar: ["Mamuju", "Majene", "Polewali Mandar", "Mamasa", "Mamuju Utara"],
+            maluku: ["Ambon", "Tual", "Seram Bagian Barat", "Seram Bagian Timur", "Buru"],
+            malut: ["Ternate", "Tidore", "Halmahera Barat", "Halmahera Timur", "Halmahera Selatan"],
+            papua: ["Jayapura", "Merauke", "Biak Numfor", "Nabire", "Paniai"],
+            "papua-barat": ["Manokwari", "Sorong", "Fakfak", "Kaimana", "Teluk Bintuni"],
+            "papua-tengah": ["Nabire", "Paniai", "Mimika", "Puncak Jaya", "Intan Jaya"],
+            "papua-pegunungan": ["Jayawijaya", "Pegunungan Bintang", "Yahukimo", "Tolikara", "Mamberamo Tengah"],
+            "papua-selatan": ["Merauke", "Boven Digoel", "Mappi", "Asmat", "Yahukimo"],
+            "papua-barat-daya": ["Sorong", "Raja Ampat", "Tambrauw", "Maybrat", "Sorong Selatan"]
+        };
+        
+        const provinceSelect = document.getElementById('province');
+        const citySelect = document.getElementById('city');
+        const provinceSearch = document.getElementById('province-search');
+        const provinceOptions = document.getElementById('province-options');
+    
+        function initProvinceOptions() {
+            const options = provinceSelect.querySelectorAll('option');
+            provinceOptions.innerHTML = '';
+            
+            options.forEach(option => {
+                if (option.value) {
+                    const div = document.createElement('div');
+                    div.className = 'dropdown-option';
+                    div.textContent = option.textContent;
+                    div.dataset.value = option.value;
+                    div.addEventListener('click', () => {
+                        provinceSelect.value = option.value;
+                        provinceSearch.value = option.textContent;
+                        provinceOptions.style.display = 'none';
+                        updateCityDropdown();
+                    });
+                    provinceOptions.appendChild(div);
+                }
+            });
+        }
+    
+        function updateCityDropdown() {
+            const selectedProvince = provinceSelect.value;
+            citySelect.innerHTML = '<option value="">Pilih Kota/Kabupaten</option>';
+            
+            if (selectedProvince) {
+                citySelect.disabled = false;
+                if (cityData[selectedProvince]) {
+                    cityData[selectedProvince].forEach(city => {
+                        const option = document.createElement('option');
+                        option.value = city.toLowerCase().replace(/\s+/g, '-');
+                        option.textContent = city;
+                        citySelect.appendChild(option);
+                    });
+                }
+            } else {
+                citySelect.disabled = true;
+            }
+        }
+        
+        function filterProvinces(searchTerm) {
+            const options = provinceOptions.querySelectorAll('.dropdown-option');
+            let hasMatches = false;
+            
+            options.forEach(option => {
+                const text = option.textContent.toLowerCase();
+                if (text.includes(searchTerm.toLowerCase())) {
+                    option.style.display = 'block';
+                    hasMatches = true;
+                } else {
+                    option.style.display = 'none';
+                }
+            });            
+            return hasMatches;
+        }
+
+        provinceSearch.addEventListener('focus', () => {
+            provinceOptions.style.display = 'block';
+        });
+        
+        provinceSearch.addEventListener('input', () => {
+            const searchTerm = provinceSearch.value.trim();
+            filterProvinces(searchTerm);
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.searchable-dropdown')) {
+                provinceOptions.style.display = 'none';
+            }
+        });
+        
+        provinceSelect.addEventListener('change', updateCityDropdown);
+        initProvinceOptions();        
+        
+        var quill = new Quill('#job-description-editor', {
+            theme: 'snow',
+            placeholder: 'Jelaskan tanggung jawab dan tugas pekerjaan',
+            modules: {
+                toolbar: [
+                    ['bold', 'italic', 'underline'],
+                    [{ 'align': [] }],
+                    [{ 'indent': '-1'}, { 'indent': '+1' }],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    ['clean']
+                ]
+            }
+        });
+    
+        var otherRequirementsQuill = new Quill('#other-requirements-editor', {
+            theme: 'snow',
+            placeholder: 'Contoh: Memiliki SIM A, Bersedia bekerja shift malam, dll.',
+            modules: {
+                toolbar: [
+                    ['bold', 'italic', 'underline'],
+                    [{ 'align': [] }],
+                    [{ 'indent': '-1'}, { 'indent': '+1' }],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    ['clean']
+                ]
+            }
+        });    
+        
+        const steps = document.querySelectorAll('.step');
+        const formSteps = document.querySelectorAll('.form-step');
+        let currentStep = 1;
+    
+        function updateStepNavigation() {
+            steps.forEach(step => {
+                const stepNumber = parseInt(step.dataset.step);
+                step.classList.remove('active', 'completed');
+                if (stepNumber === currentStep) {
+                    step.classList.add('active');
+                } else if (stepNumber < currentStep) {
+                    step.classList.add('completed');
+                }
+            });
+            
+            formSteps.forEach(step => {
+                step.classList.remove('active');
+                if (parseInt(step.id.split('-')[1]) === currentStep) {
+                    step.classList.add('active');
+                }
+            });
+        }
+        
+        function showErrorModal(message) {
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('errorModal').style.display = 'block';
+        }
+    
+        function showDateConfirmation() {
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('expiry-date').value;
+            
+            document.getElementById('displayStartDate').textContent = formatDate(startDate);
+            document.getElementById('displayEndDate').textContent = formatDate(endDate);
+            document.getElementById('dateConfirmationModal').style.display = 'block';
+        }
+    
+        function formatDate(dateString) {
+            if (!dateString) return '-';
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            return new Date(dateString).toLocaleDateString('id-ID', options);
+        }
+        
+        document.querySelectorAll('.modal-close, .modal').forEach(element => {
+            element.addEventListener('click', function(e) {
+                if (e.target === this || e.target.classList.contains('modal-close')) {
+                    this.style.display = 'none';
+                }
+            });
+        });
+    
+        document.getElementById('confirmError').addEventListener('click', function() {
+            document.getElementById('errorModal').style.display = 'none';
+        });
+    
+        document.getElementById('cancelConfirm').addEventListener('click', function() {
+            document.getElementById('dateConfirmationModal').style.display = 'none';
+        });
+    
+        document.getElementById('confirmDates').addEventListener('click', function() {
+            document.getElementById('dateConfirmationModal').style.display = 'none';
+            currentStep = 2;
+            updateStepNavigation();
+        });    
+        
+        document.getElementById('next-btn-1').addEventListener('click', function() {
+            if (validateStep(1)) {
+                showDateConfirmation();
+            }
+        });
+    
+        document.getElementById('next-btn-2').addEventListener('click', function() {
+            if (validateStep(2)) {
+                currentStep = 3;
+                updateStepNavigation();
+            }
+        });
+    
+        document.getElementById('next-btn-3').addEventListener('click', function() {
+            if (validateStep(3)) {
+                currentStep = 4;
+                updateStepNavigation();
+            }
+        });    
+        
+        document.getElementById('back-btn-2').addEventListener('click', function() {
+            currentStep = 1;
+            updateStepNavigation();
+        });
+    
+        document.getElementById('back-btn-3').addEventListener('click', function() {
+            currentStep = 2;
+            updateStepNavigation();
+        });
+    
+        document.getElementById('back-btn-4').addEventListener('click', function() {
+            currentStep = 3;
+            updateStepNavigation();
+        });    
+        
+        function validateStep(step) {
+            let isValid = true;
+            let errorMessage = '';
+            
+            if (step === 1) {
+                if (!document.getElementById('job-title').value) {
+                    errorMessage = 'Judul pekerjaan harus diisi';
+                } else if (!document.getElementById('job-type').value) {
+                    errorMessage = 'Jenis pekerjaan harus dipilih';
+                } else if (quill.getText().trim().length < 10) {
+                    errorMessage = 'Deskripsi pekerjaan harus diisi (minimal 10 karakter)';
+                } else if (!document.getElementById('province').value) {
+                    errorMessage = 'Provinsi harus dipilih';
+                } else if (!document.getElementById('city').value) {
+                    errorMessage = 'Kota/Kabupaten harus dipilih';
+                } else if (!document.getElementById('experience').value) {
+                    errorMessage = 'Pengalaman kerja harus dipilih';
+                } else if (!document.querySelector('input[name="gender"]:checked')) {
+                    errorMessage = 'Jenis kelamin harus dipilih';
+                } else if (!document.querySelector('input[name="remote-work"]:checked')) {
+                    errorMessage = 'Tipe pekerjaan harus dipilih';
+                } else if (!document.getElementById('salary-min').value || !document.getElementById('salary-max').value) {
+                    errorMessage = 'Rentang gaji harus diisi';
+                } else if (!document.getElementById('start-date').value || !document.getElementById('expiry-date').value) {
+                    errorMessage = 'Tanggal tayang dan berakhir harus diisi';
+                }
+                
+                if (errorMessage) {
+                    showErrorModal(errorMessage);
+                    return false;
+                }
+                return true;
+            }
+            else if (step === 2) {
+                if (!document.getElementById('education').value) {
+                    showErrorModal('Pendidikan minimal harus dipilih');
+                    return false;
+                }
+                return true;
+            }
+            else if (step === 3) {
+                const email = document.getElementById('contact-email').value;
+                if (!email) {
+                    showErrorModal('Email penerima lamaran harus diisi');
+                    return false;
+                } else if (!isValidEmail(email)) {
+                    showErrorModal('Format email tidak valid');
+                    return false;
+                }
+                return true;
+            }
+            else if (step === 4) {
+                if (!document.getElementById('agree-terms').checked) {
+                    showErrorModal('Anda harus menyetujui syarat dan ketentuan');
+                    return false;
+                }
+                return true;
+            }
+        }    
+        
+        function isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }    
+        
+        initProvinceOptions();
+        updateStepNavigation();    
+        
+        const agreeCheckbox = document.getElementById('agree-terms');
+        const submitBtn = document.getElementById('submit-btn');
+        submitBtn.disabled = true;
+        agreeCheckbox.addEventListener('change', function() {
+            submitBtn.disabled = !this.checked;
+        });    
+        
+        otherRequirementsQuill.on('text-change', function() {
+            document.getElementById('other-requirements').value = otherRequirementsQuill.root.innerHTML;
+        });
+    
+        
+        function formatRupiah(angka, prefix = 'Rp') {
+            const number_string = angka.replace(/[^,\d]/g, '').toString();
+            const split = number_string.split(',');
+            let sisa = split[0].length % 3;
+            let rupiah = split[0].substr(0, sisa);
+            const ribuan = split[0].substr(sisa).match(/\d{3}/g);    
+            if (ribuan) {
+                rupiah += (sisa ? '.' : '') + ribuan.join('.');
+            }
+            rupiah = split[1] !== undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix + rupiah;
+        }
+    
+        document.querySelectorAll('#salary-min, #salary-max').forEach(input => {
+            input.addEventListener('input', function (e) {
+                const value = e.target.value;
+                e.target.value = formatRupiah(value);
+            });
+        });
+        
+        document.getElementById('cancel-btn').addEventListener('click', function() {
+            document.getElementById('cancelConfirmationModal').style.display = 'block';
+        });
+        document.getElementById('confirmCancel').addEventListener('click', function() {            
+            window.location.href = 'loker_dashboard.html';
+        });
+
+        document.getElementById('continueEditing').addEventListener('click', function() {
+            document.getElementById('cancelConfirmationModal').style.display = 'none';
+        });
+        document.getElementById('jobForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (validateStep(4)) {            
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+            
+            document.getElementById('submitSuccessModal').style.display = 'block';
+        } else {            
+            showErrorModal('Silakan lengkapi semua persyaratan sebelum mengirim');
+        }
+    });
+
+        document.getElementById('backToDashboard').addEventListener('click', function() {
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+</html>
