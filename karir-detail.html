@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Page</title>
+  <link rel="stylesheet" href="style/listyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body style="background-color:#f5f5f5;">
+  <div class="toast" id="toastNotification">
+    <i class="fas fa-check-circle toast-icon"></i>
+    <span id="toastMessage">Lamaran Anda berhasil dikirim!</span>
+  </div>
+<div class="breadcrumb-container">
+    <ul class="breadcrumb">
+        <li><a href="karir-company-list.html">Companies Career</a></li>
+        <li><a href="karir-company-profile.html">PT XXX</a></li>
+        <li>Vacancy 1</li>
+    </ul>
+</div>
+<div class="career-content-v" data-job="4">
+  <h3>Back-End Engineer</h3>
+  <p class="company-name">Diklatkerja</p>
+    <div class="vacancy-meta">
+      <div class="meta-item">
+        <i class="fas fa-map-marker-alt meta-icon"></i>
+        <span>Semarang, Jawa Tengah</span>
+      </div>
+      <div class="meta-item">
+        <i class="fas fa-briefcase meta-icon"></i>
+        <span>Internship</span>
+      </div>
+      <div class="meta-item">
+        <i class="fas fa-clock meta-icon"></i>
+        <span>Diposting 5 hari lalu</span>
+      </div>
+      <div class="meta-item">
+        <i class="fas fa-users meta-icon"></i>
+        <span>25 pelamar</span>
+      </div>
+    </div>
+ 
+    <div class="vacancy-actions">
+      <button class="apply-btn" id="applyBtn">
+        <i class="fas fa-paper-plane"></i>
+        Lamar Pekerjaan
+      </button>
+      <button class="share-btn" id="shareBtn">
+        <i class="fas fa-share-alt"></i>
+        Bagikan
+      </button>
+    </div>
+
+  <div class="content-career-1">
+    <h4>Deskripsi Pekerjaan</h4>
+    <p>...</p>
+    <div class="career-requirement">
+      <p>Requirement</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet est at nulla dictum vestibulum ac ut erat. Curabitur a orci at velit fringilla tincidunt nec ut nunc. Nulla facilisi. Aenean in efficitur eros. Phasellus posuere, odio a congue sodales, lectus enim tincidunt eros, a iaculis elit justo vel eros. Fusce non orci vitae libero euismod feugiat. Integer et nisi ac nisi sollicitudin pharetra vel ac arcu. Proin auctor ipsum vitae nunc dapibus, sed volutpat est volutpat. Donec mollis, magna id elementum convallis, felis lacus pharetra lectus, at varius odio urna et elit. Vestibulum pharetra, lorem ac auctor vehicula, felis erat laoreet odio, eget iaculis velit metus et tortor.</p>
+      <p>Additional</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet est at nulla dictum vestibulum ac ut erat. Curabitur a orci at velit fringilla tincidunt nec ut nunc. Nulla facilisi. Aenean in efficitur eros. Phasellus posuere, odio a congue sodales, lectus enim tincidunt eros, a iaculis elit justo vel eros. Fusce non orci vitae libero euismod feugiat. Integer et nisi ac nisi sollicitudin pharetra vel ac arcu. Proin auctor ipsum vitae nunc dapibus, sed volutpat est volutpat. Donec mollis, magna id elementum convallis, felis lacus pharetra lectus, at varius odio urna et elit. Vestibulum pharetra, lorem ac auctor vehicula, felis erat laoreet odio, eget iaculis velit metus et tortor.</p>
+    </div>
+  </div>
+  <div class="company-about-career">
+    <h2 class="section-title">Tentang Perusahaan</h2>
+    <div class="company-about-top">
+      <div class="career-logo"><img src="image/img_logo.png"></div>
+      <div class="career-content-2">
+        <h4>Diklat</h4>
+        <div class="career-content-1">
+          <img src="image/work-icon.png" alt="Work Icon">
+          <p name="bidang_perusahaan">Pendidikan dan Pelatihan</p>
+        </div>
+      </div>
+    </div>
+    <div class="company-description">
+      <p>Diklatkerja adalah platform pembelajaran online yang menyediakan kursus bersertifikat di bidang keinsinyuran dan profesional lainnya. Didirikan pada tahun 2019, platform ini bertujuan untuk menjembatani kesenjangan antara dunia akademik dan industri dengan menawarkan pelatihan yang relevan dan aplikatif. Melalui program Continuing Professional Development (CPD), Diklatkerja mendukung mahasiswa, fresh graduate, dan profesional dalam mengembangkan kompetensi mereka sesuai dengan kebutuhan industri yang terus berkembang. Peserta dapat mengikuti webinar langsung maupun rekaman, berinteraksi dengan instruktur berpengalaman, serta memperoleh sertifikat setelah menyelesaikan ujian yang disediakan.</p>
+    </div>
+    <div class="company-location">
+      <h3 class="location-title">Lokasi Perusahaan</h3>
+      <div class="location-map">
+        <i class="fas fa-map-marked-alt" style="font-size: 40px;"></i>
+        <span style="margin-left: 10px;">Peta lokasi akan ditampilkan di sini</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Application Modal -->
+<div class="application-modal" id="applicationModal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2>Lamar Pekerjaan</h2>
+    <p class="job-title-modal" id="modalJobTitle"></p>
+    <p class="company-name-modal" id="modalCompanyName"></p>
+    <div class="application-options">
+      <div class="application-option" id="applyWithProfile">
+        <div class="option-icon"><i class="fas fa-user-circle"></i></div>
+        <h3>Lamar dengan Profil</h3>
+        <p>Gunakan profil Diklatkerja Anda untuk melamar</p>
+        <button class="apply-option-btn">Lamar Sekarang</button>
+      </div>
+      <div class="application-option" id="applyManually">
+        <div class="option-icon"><i class="fas fa-file-upload"></i></div>
+        <h3>Lamar Manual</h3>
+        <p>Unggah CV dan dokumen pendukung</p>
+        <button class="apply-option-btn">Lanjutkan</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Manual Application Modal -->
+<div class="manual-application-modal" id="manualApplicationModal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2>Lamar Pekerjaan</h2>
+    <p class="job-title-modal" id="manualModalJobTitle"></p>
+    <p class="company-name-modal" id="manualModalCompanyName"></p>
+    <form class="manual-application-form">
+      <div class="form-group">
+        <label for="fullName">Nama Lengkap*</label>
+        <input type="text" id="fullName" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email*</label>
+        <input type="email" id="email" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Nomor Telepon*</label>
+        <input type="tel" id="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="resume">Unggah CV/Resume* (PDF, max 5MB)</label>
+        <input type="file" id="resume" accept=".pdf" required>
+      </div>
+      <div class="form-group">
+        <label for="coverLetter">Surat Lamaran (Opsional)</label>
+        <textarea id="coverLetter" rows="4"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="portfolio">Portfolio/Link (Opsional)</label>
+        <input type="url" id="portfolio">
+      </div>
+      <button type="submit" class="submit-application-btn">Kirim Lamaran</button>
+    </form>
+  </div>
+</div>
+
+<!-- Share Modal -->
+<div class="dk-share-modal" id="dkShareModal">
+  <div class="dk-modal-content-2">
+    <span class="dk-close-modal-2">&times;</span>
+    <h2 class="dk-share-title">Bagikan Lowongan</h2>
+    <div class="dk-share-link-container">
+      <input type="text" id="dkShareLinkInput" readonly class="dk-share-input">
+      <button id="dkCopyLinkBtn" class="dk-copy-btn">Salin Tautan</button>
+    </div>
+    <div class="dk-social-share-section">
+      <p class="dk-share-label">Bagikan ke:</p>
+      <div class="dk-social-icons-wrapper">
+        <a href="#" class="dk-social-icon dk-whatsapp-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="dk-social-icon dk-facebook-icon" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="dk-social-icon dk-twitter-icon" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="dk-social-icon dk-linkedin-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="dk-social-icon dk-telegram-icon" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelector('.career-content-v').classList.add('active'); // to show
+
+document.addEventListener('DOMContentLoaded', () => {
+  const applicationModal = document.getElementById('applicationModal');
+  const manualApplicationModal = document.getElementById('manualApplicationModal');
+  const applyBtn = document.getElementById('applyBtn');
+  const applyWithProfileBtn = document.getElementById('applyWithProfile');
+  const applyManuallyBtn = document.getElementById('applyManually');
+  const manualForm = document.querySelector('.manual-application-form');
+  const closeButtons = document.querySelectorAll('.close-modal');
+  const dkShareModal = document.getElementById('dkShareModal');
+  const dkShareBtn = document.getElementById('shareBtn');
+  const dkCloseShareModal = document.querySelector('.dk-close-modal-2');
+  const dkCopyLinkBtn = document.getElementById('dkCopyLinkBtn');
+  const dkShareLinkInput = document.getElementById('dkShareLinkInput');
+
+  // Apply button click handler
+  applyBtn.addEventListener('click', function() {
+    const content = this.closest('.career-content-v');
+    document.getElementById('modalJobTitle').textContent = content.querySelector('h3').textContent;
+    document.getElementById('modalCompanyName').textContent = content.querySelector('.company-name').textContent;
+    document.getElementById('manualModalJobTitle').textContent = content.querySelector('h3').textContent;
+    document.getElementById('manualModalCompanyName').textContent = content.querySelector('.company-name').textContent;
+    applicationModal.style.display = 'block';
+  });
+
+  closeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      applicationModal.style.display = 'none';
+      manualApplicationModal.style.display = 'none';
+    });
+  });
+
+  window.addEventListener('click', event => {
+    if (event.target === applicationModal) applicationModal.style.display = 'none';
+    if (event.target === manualApplicationModal) manualApplicationModal.style.display = 'none';
+    if (event.target === dkShareModal) dkShareModal.style.display = 'none';
+  });
+
+  applyWithProfileBtn.addEventListener('click', () => {
+    showToast('Anda melamar menggunakan profil Diklatkerja Anda');
+    applicationModal.style.display = 'none';
+  });
+
+  applyManuallyBtn.addEventListener('click', () => {
+    applicationModal.style.display = 'none';
+    manualApplicationModal.style.display = 'block';
+  });
+
+  manualForm.addEventListener('submit', event => {
+    event.preventDefault();
+    showToast('Lamaran Anda telah berhasil dikirim!');
+    manualApplicationModal.style.display = 'none';
+  });
+
+  dkShareBtn.addEventListener('click', () => {
+    dkShareLinkInput.value = window.location.href;
+    dkShareModal.style.display = 'block';
+  });
+
+  dkCloseShareModal.addEventListener('click', () => {
+    dkShareModal.style.display = 'none';
+  });
+
+  dkCopyLinkBtn.addEventListener('click', () => {
+    dkShareLinkInput.select();
+    document.execCommand('copy');
+    const originalText = dkCopyLinkBtn.textContent;
+    dkCopyLinkBtn.textContent = '✓ Tersalin';
+    setTimeout(() => dkCopyLinkBtn.textContent = originalText, 2000);
+  });
+
+  function showToast(message) {
+    const toast = document.getElementById('toastNotification');
+    const toastMessage = document.getElementById('toastMessage');
+    toastMessage.textContent = message;
+    toast.classList.remove('hidden');
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.classList.add('hidden'), 300);
+    }, 3000);
+  }
+});
+</script>
+
+</body>
+</html>
